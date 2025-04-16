@@ -5,7 +5,7 @@ void printf(const char* str);
 void printfHex(uint8_t key);
 
 KeyboardDriver::KeyboardDriver(InterruptManager *interruptManager)
-:InterruptHandler(0x21, interruptManager),dataPort(0x60), commandPort(0x64)
+:InterruptHandler(interruptManager, 0x21),dataPort(0x60), commandPort(0x64)
 {
     while(commandPort.Read() & 0x1)
         dataPort.Read();

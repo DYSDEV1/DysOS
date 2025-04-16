@@ -6,7 +6,7 @@ void printf(const char* str);
 void printfHex(uint8_t key);
 
 
-InterruptHandler::InterruptHandler(uint8_t interrupt, InterruptManager* interruptManager){
+InterruptHandler::InterruptHandler(InterruptManager* interruptManager, uint8_t interrupt){
     this->interrupt = interrupt;
     this->interruptManager = interruptManager;
     interruptManager->handlers[interrupt] = this;
@@ -55,8 +55,9 @@ InterruptManager::InterruptManager(uint16_t hardwareInterruptOffset, GlobalDescr
         SetInterruptDescriptorTableEntry(i, CodeSegment, &InterruptIgnore, 0, IDT_INTERRUPT_GATE);
         handlers[i] = nullptr;
     }
+
+
     SetInterruptDescriptorTableEntry(0, CodeSegment, &InterruptIgnore, 0, IDT_INTERRUPT_GATE);
-  
     SetInterruptDescriptorTableEntry(0x00, CodeSegment, &HandleException0x00, 0, IDT_INTERRUPT_GATE);
     SetInterruptDescriptorTableEntry(0x01, CodeSegment, &HandleException0x01, 0, IDT_INTERRUPT_GATE);
     SetInterruptDescriptorTableEntry(0x02, CodeSegment, &HandleException0x02, 0, IDT_INTERRUPT_GATE);
@@ -139,10 +140,10 @@ void InterruptManager::Activate()
 
 void InterruptManager::Deactivate()
 {
-    if(ActiveInterruptManager == this)
+    if(ActiveInterruptManager == this){
         ActiveInterruptManager = 0;    
-        asm("cli");
-        
+        asm("cli");     
+    }
     
 }
 
@@ -157,7 +158,6 @@ uint32_t InterruptManager::HandleInterrupt(uint8_t interrupt, uint32_t esp)
 uint32_t InterruptManager::DoHandleInterrupt(uint8_t interrupt, uint32_t esp)
 {
     if(handlers[interrupt] != 0){
-        printf("Test");
         esp = handlers[interrupt]->HandleInterrupt(esp);
     }
     else if(interrupt != 0x20)

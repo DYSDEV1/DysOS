@@ -14,7 +14,7 @@
             uint8_t interrupt;
             InterruptManager* interruptManager;
 
-            InterruptHandler(uint8_t interrupt, InterruptManager* interruptManager);
+            InterruptHandler(InterruptManager* interruptManager, uint8_t interrupt);
             ~InterruptHandler();
         
         public:

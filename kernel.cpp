@@ -72,7 +72,6 @@ extern "C" void kernelMain(const void* multiboot_structure, uint32_t /*magicnumb
     printf("      An operating system by Dys \n");
     printf("===============================================\n");
     printf("\n");
-
     GlobalDescriptorTable gdt;
     InterruptManager interrupts(0x20, &gdt);
     KeyboardDriver keyboard(&interrupts);
