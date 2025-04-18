@@ -8,9 +8,9 @@ Disassembly of section .text:
   100000:	02 b0 ad 1b 03 00    	add    0x31bad(%eax),%dh
   100006:	00 00                	add    %al,(%eax)
   100008:	fb                   	sti    
-  100009:	4f 0                  	dec    %edi
+  100009:	4f                   	dec    %edi
   10000a:	52                   	push   %edx
-  10000b:	e4                   	.byte 0xe4
+  10000b:	e4                 	in     $0xbc,%al
 
 0010000c <loader>:
   10000c:	bc e0 1d 10 00       	mov    $0x101de0,%esp
@@ -2178,4 +2178,734 @@ Disassembly of section .text:
   10176b:	52                   	push   %edx
   10176c:	44                   	inc    %esp
   10176d:	3a 20                	cmp    (%eax),%ah
+	...
+
+Disassembly of section .eh_frame:
+
+00101770 <.eh_frame>:
+  101770:	14 00                	adc    $0x0,%al
+  101772:	00 00                	add    %al,(%eax)
+  101774:	00 00                	add    %al,(%eax)
+  101776:	00 00                	add    %al,(%eax)
+  101778:	01 7a 52             	add    %edi,0x52(%edx)
+  10177b:	00 01                	add    %al,(%ecx)
+  10177d:	7c 08                	jl     101787 <_ZN14KeyboardDriver15HandleInterruptEj+0x133>
+  10177f:	01 1b                	add    %ebx,(%ebx)
+  101781:	0c 04                	or     $0x4,%al
+  101783:	04 88                	add    $0x88,%al
+  101785:	01 00                	add    %eax,(%eax)
+  101787:	00 20                	add    %ah,(%eax)
+  101789:	00 00                	add    %al,(%eax)
+  10178b:	00 1c 00             	add    %bl,(%eax,%eax,1)
+  10178e:	00 00                	add    %al,(%eax)
+  101790:	91                   	xchg   %eax,%ecx
+  101791:	e8 ff ff eb 01       	call   1fc1795 <_ZN16InterruptManager22ActiveInterruptManagerE+0x1cbf195>
+  101796:	00 00                	add    %al,(%eax)
+  101798:	00 41 0e             	add    %al,0xe(%ecx)
+  10179b:	08 85 02 42 0d 05    	or     %al,0x50d4202(%ebp)
+  1017a1:	44                   	inc    %esp
+  1017a2:	83 03 03             	addl   $0x3,(%ebx)
+  1017a5:	e3 01                	jecxz  1017a8 <_ZN14KeyboardDriver15HandleInterruptEj+0x154>
+  1017a7:	c5 c3 0c             	(bad)
+  1017aa:	04 04                	add    $0x4,%al
+  1017ac:	1c 00                	sbb    $0x0,%al
+  1017ae:	00 00                	add    %al,(%eax)
+  1017b0:	40                   	inc    %eax
+  1017b1:	00 00                	add    %al,(%eax)
+  1017b3:	00 58 ea             	add    %bl,-0x16(%eax)
+  1017b6:	ff                   	(bad)  
+  1017b7:	ff                   	(bad)  
+  1017b8:	7a 00                	jp     1017ba <_ZN14KeyboardDriver15HandleInterruptEj+0x166>
+  1017ba:	00 00                	add    %al,(%eax)
+  1017bc:	00 41 0e             	add    %al,0xe(%ecx)
+  1017bf:	08 85 02 42 0d 05    	or     %al,0x50d4202(%ebp)
+  1017c5:	02 76 c5             	add    -0x3b(%esi),%dh
+  1017c8:	0c 04                	or     $0x4,%al
+  1017ca:	04 00                	add    $0x0,%al
+  1017cc:	20 00                	and    %al,(%eax)
+  1017ce:	00 00                	add    %al,(%eax)
+  1017d0:	60                   	pusha  
+  1017d1:	00 00                	add    %al,(%eax)
+  1017d3:	00 b2 ea ff ff 3a    	add    %dh,0x3affffea(%edx)
+  1017d9:	00 00                	add    %al,(%eax)
+  1017db:	00 00                	add    %al,(%eax)
+  1017dd:	41                   	inc    %ecx
+  1017de:	0e                   	push   %cs
+  1017df:	08 85 02 42 0d 05    	or     %al,0x50d4202(%ebp)
+  1017e5:	44                   	inc    %esp
+  1017e6:	83 03 72             	addl   $0x72,(%ebx)
+  1017e9:	c5 c3 0c             	(bad)
+  1017ec:	04 04                	add    $0x4,%al
+  1017ee:	00 00                	add    %al,(%eax)
+  1017f0:	18 00                	sbb    %al,(%eax)
+  1017f2:	00 00                	add    %al,(%eax)
+  1017f4:	84 00                	test   %al,(%eax)
+  1017f6:	00 00                	add    %al,(%eax)
+  1017f8:	c8 ea ff ff          	enter  $0xffea,$0xff
+  1017fc:	c3                   	ret    
+  1017fd:	00 00                	add    %al,(%eax)
+  1017ff:	00 00                	add    %al,(%eax)
+  101801:	41                   	inc    %ecx
+  101802:	0e                   	push   %cs
+  101803:	08 85 02 42 0d 05    	or     %al,0x50d4202(%ebp)
+  101809:	47                   	inc    %edi
+  10180a:	83 03 10             	addl   $0x10,(%ebx)
+  10180d:	00 00                	add    %al,(%eax)
+  10180f:	00 a0 00 00 00 6f    	add    %ah,0x6f000000(%eax)
+  101815:	eb ff                	jmp    101816 <_ZN14KeyboardDriver15HandleInterruptEj+0x1c2>
+  101817:	ff 04 00             	incl   (%eax,%eax,1)
+  10181a:	00 00                	add    %al,(%eax)
+  10181c:	00 00                	add    %al,(%eax)
+  10181e:	00 00                	add    %al,(%eax)
+  101820:	10 00                	adc    %al,(%eax)
+  101822:	00 00                	add    %al,(%eax)
+  101824:	b4 00                	mov    $0x0,%ah
+  101826:	00 00                	add    %al,(%eax)
+  101828:	5f                   	pop    %edi
+  101829:	eb ff                	jmp    10182a <_ZN14KeyboardDriver15HandleInterruptEj+0x1d6>
+  10182b:	ff 04 00             	incl   (%eax,%eax,1)
+  10182e:	00 00                	add    %al,(%eax)
+  101830:	00 00                	add    %al,(%eax)
+  101832:	00 00                	add    %al,(%eax)
+  101834:	1c 00                	sbb    $0x0,%al
+  101836:	00 00                	add    %al,(%eax)
+  101838:	c8 00 00 00          	enter  $0x0,$0x0
+  10183c:	50                   	push   %eax
+  10183d:	eb ff                	jmp    10183e <_ZN14KeyboardDriver15HandleInterruptEj+0x1ea>
+  10183f:	ff 86 00 00 00 00    	incl   0x0(%esi)
+  101845:	41                   	inc    %ecx
+  101846:	0e                   	push   %cs
+  101847:	08 85 02 42 0d 05    	or     %al,0x50d4202(%ebp)
+  10184d:	02 82 c5 0c 04 04    	add    0x4040cc5(%edx),%al
+  101853:	00 1c 00             	add    %bl,(%eax,%eax,1)
+  101856:	00 00                	add    %al,(%eax)
+  101858:	e8 00 00 00 b6       	call   b610185d <MAGIC+0x9a62685b>
+  10185d:	eb ff                	jmp    10185e <_ZN14KeyboardDriver15HandleInterruptEj+0x20a>
+  10185f:	ff 10                	call   *(%eax)
+  101861:	00 00                	add    %al,(%eax)
+  101863:	00 00                	add    %al,(%eax)
+  101865:	41                   	inc    %ecx
+  101866:	0e                   	push   %cs
+  101867:	08 85 02 42 0d 05    	or     %al,0x50d4202(%ebp)
+  10186d:	4c                   	dec    %esp
+  10186e:	c5 0c 04             	lds    (%esp,%eax,1),%ecx
+  101871:	04 00                	add    $0x0,%al
+  101873:	00 1c 00             	add    %bl,(%eax,%eax,1)
+  101876:	00 00                	add    %al,(%eax)
+  101878:	08 01                	or     %al,(%ecx)
+  10187a:	00 00                	add    %al,(%eax)
+  10187c:	a6                   	cmpsb  %es:(%edi),%ds:(%esi)
+  10187d:	eb ff                	jmp    10187e <_ZN14KeyboardDriver15HandleInterruptEj+0x22a>
+  10187f:	ff 14 00             	call   *(%eax,%eax,1)
+  101882:	00 00                	add    %al,(%eax)
+  101884:	00 41 0e             	add    %al,0xe(%ecx)
+  101887:	08 85 02 42 0d 05    	or     %al,0x50d4202(%ebp)
+  10188d:	50                   	push   %eax
+  10188e:	c5 0c 04             	lds    (%esp,%eax,1),%ecx
+  101891:	04 00                	add    $0x0,%al
+  101893:	00 1c 00             	add    %bl,(%eax,%eax,1)
+  101896:	00 00                	add    %al,(%eax)
+  101898:	28 01                	sub    %al,(%ecx)
+  10189a:	00 00                	add    %al,(%eax)
+  10189c:	9a eb ff ff 14 00 00 	lcall  $0x0,$0x14ffffeb
+  1018a3:	00 00                	add    %al,(%eax)
+  1018a5:	41                   	inc    %ecx
+  1018a6:	0e                   	push   %cs
+  1018a7:	08 85 02 42 0d 05    	or     %al,0x50d4202(%ebp)
+  1018ad:	50                   	push   %eax
+  1018ae:	c5 0c 04             	lds    (%esp,%eax,1),%ecx
+  1018b1:	04 00                	add    $0x0,%al
+  1018b3:	00 1c 00             	add    %bl,(%eax,%eax,1)
+  1018b6:	00 00                	add    %al,(%eax)
+  1018b8:	48                   	dec    %eax
+  1018b9:	01 00                	add    %eax,(%eax)
+  1018bb:	00 8e eb ff ff dc    	add    %cl,-0x23000015(%esi)
+  1018c1:	00 00                	add    %al,(%eax)
+  1018c3:	00 00                	add    %al,(%eax)
+  1018c5:	41                   	inc    %ecx
+  1018c6:	0e                   	push   %cs
+  1018c7:	08 85 02 42 0d 05    	or     %al,0x50d4202(%ebp)
+  1018cd:	02 d8                	add    %al,%bl
+  1018cf:	c5 0c 04             	lds    (%esp,%eax,1),%ecx
+  1018d2:	04 00                	add    $0x0,%al
+  1018d4:	1c 00                	sbb    $0x0,%al
+  1018d6:	00 00                	add    %al,(%eax)
+  1018d8:	68 01 00 00 4a       	push   $0x4a000001
+  1018dd:	ec                   	in     (%dx),%al
+  1018de:	ff                   	(bad)  
+  1018df:	ff 75 00             	push   0x0(%ebp)
+  1018e2:	00 00                	add    %al,(%eax)
+  1018e4:	00 41 0e             	add    %al,0xe(%ecx)
+  1018e7:	08 85 02 42 0d 05    	or     %al,0x50d4202(%ebp)
+  1018ed:	02 71 c5             	add    -0x3b(%ecx),%dh
+  1018f0:	0c 04                	or     $0x4,%al
+  1018f2:	04 00                	add    $0x0,%al
+  1018f4:	1c 00                	sbb    $0x0,%al
+  1018f6:	00 00                	add    %al,(%eax)
+  1018f8:	88 01                	mov    %al,(%ecx)
+  1018fa:	00 00                	add    %al,(%eax)
+  1018fc:	a0 ec ff ff 82       	mov    0x82ffffec,%al
+  101901:	00 00                	add    %al,(%eax)
+  101903:	00 00                	add    %al,(%eax)
+  101905:	41                   	inc    %ecx
+  101906:	0e                   	push   %cs
+  101907:	08 85 02 42 0d 05    	or     %al,0x50d4202(%ebp)
+  10190d:	02 7e c5             	add    -0x3b(%esi),%bh
+  101910:	0c 04                	or     $0x4,%al
+  101912:	04 00                	add    $0x0,%al
+  101914:	1c 00                	sbb    $0x0,%al
+  101916:	00 00                	add    %al,(%eax)
+  101918:	a8 01                	test   $0x1,%al
+  10191a:	00 00                	add    %al,(%eax)
+  10191c:	02 ed                	add    %ch,%ch
+  10191e:	ff                   	(bad)  
+  10191f:	ff 10                	call   *(%eax)
+  101921:	00 00                	add    %al,(%eax)
+  101923:	00 00                	add    %al,(%eax)
+  101925:	41                   	inc    %ecx
+  101926:	0e                   	push   %cs
+  101927:	08 85 02 42 0d 05    	or     %al,0x50d4202(%ebp)
+  10192d:	4c                   	dec    %esp
+  10192e:	c5 0c 04             	lds    (%esp,%eax,1),%ecx
+  101931:	04 00                	add    $0x0,%al
+  101933:	00 1c 00             	add    %bl,(%eax,%eax,1)
+  101936:	00 00                	add    %al,(%eax)
+  101938:	c8 01 00 00          	enter  $0x1,$0x0
+  10193c:	f2 ec                	repnz in (%dx),%al
+  10193e:	ff                   	(bad)  
+  10193f:	ff 10                	call   *(%eax)
+  101941:	00 00                	add    %al,(%eax)
+  101943:	00 00                	add    %al,(%eax)
+  101945:	41                   	inc    %ecx
+  101946:	0e                   	push   %cs
+  101947:	08 85 02 42 0d 05    	or     %al,0x50d4202(%ebp)
+  10194d:	4c                   	dec    %esp
+  10194e:	c5 0c 04             	lds    (%esp,%eax,1),%ecx
+  101951:	04 00                	add    $0x0,%al
+  101953:	00 1c 00             	add    %bl,(%eax,%eax,1)
+  101956:	00 00                	add    %al,(%eax)
+  101958:	e8 01 00 00 e2       	call   e210195e <MAGIC+0xc662695c>
+  10195d:	ec                   	in     (%dx),%al
+  10195e:	ff                   	(bad)  
+  10195f:	ff 24 00             	jmp    *(%eax,%eax,1)
+  101962:	00 00                	add    %al,(%eax)
+  101964:	00 41 0e             	add    %al,0xe(%ecx)
+  101967:	08 85 02 42 0d 05    	or     %al,0x50d4202(%ebp)
+  10196d:	60                   	pusha  
+  10196e:	c5 0c 04             	lds    (%esp,%eax,1),%ecx
+  101971:	04 00                	add    $0x0,%al
+  101973:	00 1c 00             	add    %bl,(%eax,%eax,1)
+  101976:	00 00                	add    %al,(%eax)
+  101978:	08 02                	or     %al,(%edx)
+  10197a:	00 00                	add    %al,(%eax)
+  10197c:	e6 ec                	out    %al,$0xec
+  10197e:	ff                   	(bad)  
+  10197f:	ff 10                	call   *(%eax)
+  101981:	00 00                	add    %al,(%eax)
+  101983:	00 00                	add    %al,(%eax)
+  101985:	41                   	inc    %ecx
+  101986:	0e                   	push   %cs
+  101987:	08 85 02 42 0d 05    	or     %al,0x50d4202(%ebp)
+  10198d:	4c                   	dec    %esp
+  10198e:	c5 0c 04             	lds    (%esp,%eax,1),%ecx
+  101991:	04 00                	add    $0x0,%al
+  101993:	00 20                	add    %ah,(%eax)
+  101995:	00 00                	add    %al,(%eax)
+  101997:	00 28                	add    %ch,(%eax)
+  101999:	02 00                	add    (%eax),%al
+  10199b:	00 d6                	add    %dl,%dh
+  10199d:	ec                   	in     (%dx),%al
+  10199e:	ff                   	(bad)  
+  10199f:	ff                   	(bad)  
+  1019a0:	3e 00 00             	add    %al,%ds:(%eax)
+  1019a3:	00 00                	add    %al,(%eax)
+  1019a5:	41                   	inc    %ecx
+  1019a6:	0e                   	push   %cs
+  1019a7:	08 85 02 42 0d 05    	or     %al,0x50d4202(%ebp)
+  1019ad:	44                   	inc    %esp
+  1019ae:	83 03 76             	addl   $0x76,(%ebx)
+  1019b1:	c5 c3 0c             	(bad)
+  1019b4:	04 04                	add    $0x4,%al
+  1019b6:	00 00                	add    %al,(%eax)
+  1019b8:	1c 00                	sbb    $0x0,%al
+  1019ba:	00 00                	add    %al,(%eax)
+  1019bc:	4c                   	dec    %esp
+  1019bd:	02 00                	add    (%eax),%al
+  1019bf:	00 f0                	add    %dh,%al
+  1019c1:	ec                   	in     (%dx),%al
+  1019c2:	ff                   	(bad)  
+  1019c3:	ff 2a                	ljmp   *(%edx)
+  1019c5:	00 00                	add    %al,(%eax)
+  1019c7:	00 00                	add    %al,(%eax)
+  1019c9:	41                   	inc    %ecx
+  1019ca:	0e                   	push   %cs
+  1019cb:	08 85 02 42 0d 05    	or     %al,0x50d4202(%ebp)
+  1019d1:	66 c5 0c 04          	lds    (%esp,%eax,1),%cx
+  1019d5:	04 00                	add    $0x0,%al
+  1019d7:	00 1c 00             	add    %bl,(%eax,%eax,1)
+  1019da:	00 00                	add    %al,(%eax)
+  1019dc:	6c                   	insb   (%dx),%es:(%edi)
+  1019dd:	02 00                	add    (%eax),%al
+  1019df:	00 fa                	add    %bh,%dl
+  1019e1:	ec                   	in     (%dx),%al
+  1019e2:	ff                   	(bad)  
+  1019e3:	ff 25 00 00 00 00    	jmp    *0x0
+  1019e9:	41                   	inc    %ecx
+  1019ea:	0e                   	push   %cs
+  1019eb:	08 85 02 42 0d 05    	or     %al,0x50d4202(%ebp)
+  1019f1:	61                   	popa   
+  1019f2:	c5 0c 04             	lds    (%esp,%eax,1),%ecx
+  1019f5:	04 00                	add    $0x0,%al
+  1019f7:	00 1c 00             	add    %bl,(%eax,%eax,1)
+  1019fa:	00 00                	add    %al,(%eax)
+  1019fc:	8c 02                	mov    %es,(%edx)
+  1019fe:	00 00                	add    %al,(%eax)
+  101a00:	00 ed                	add    %ch,%ch
+  101a02:	ff                   	(bad)  
+  101a03:	ff 23                	jmp    *(%ebx)
+  101a05:	00 00                	add    %al,(%eax)
+  101a07:	00 00                	add    %al,(%eax)
+  101a09:	41                   	inc    %ecx
+  101a0a:	0e                   	push   %cs
+  101a0b:	08 85 02 42 0d 05    	or     %al,0x50d4202(%ebp)
+  101a11:	5f                   	pop    %edi
+  101a12:	c5 0c 04             	lds    (%esp,%eax,1),%ecx
+  101a15:	04 00                	add    $0x0,%al
+  101a17:	00 20                	add    %ah,(%eax)
+  101a19:	00 00                	add    %al,(%eax)
+  101a1b:	00 ac 02 00 00 04 ed 	add    %ch,-0x12fc0000(%edx,%eax,1)
+  101a22:	ff                   	(bad)  
+  101a23:	ff                   	(bad)  
+  101a24:	3e 00 00             	add    %al,%ds:(%eax)
+  101a27:	00 00                	add    %al,(%eax)
+  101a29:	41                   	inc    %ecx
+  101a2a:	0e                   	push   %cs
+  101a2b:	08 85 02 42 0d 05    	or     %al,0x50d4202(%ebp)
+  101a31:	44                   	inc    %esp
+  101a32:	83 03 76             	addl   $0x76,(%ebx)
+  101a35:	c5 c3 0c             	(bad)
+  101a38:	04 04                	add    $0x4,%al
+  101a3a:	00 00                	add    %al,(%eax)
+  101a3c:	1c 00                	sbb    $0x0,%al
+  101a3e:	00 00                	add    %al,(%eax)
+  101a40:	d0 02                	rolb   (%edx)
+  101a42:	00 00                	add    %al,(%eax)
+  101a44:	1e                   	push   %ds
+  101a45:	ed                   	in     (%dx),%eax
+  101a46:	ff                   	(bad)  
+  101a47:	ff 2a                	ljmp   *(%edx)
+  101a49:	00 00                	add    %al,(%eax)
+  101a4b:	00 00                	add    %al,(%eax)
+  101a4d:	41                   	inc    %ecx
+  101a4e:	0e                   	push   %cs
+  101a4f:	08 85 02 42 0d 05    	or     %al,0x50d4202(%ebp)
+  101a55:	66 c5 0c 04          	lds    (%esp,%eax,1),%cx
+  101a59:	04 00                	add    $0x0,%al
+  101a5b:	00 1c 00             	add    %bl,(%eax,%eax,1)
+  101a5e:	00 00                	add    %al,(%eax)
+  101a60:	f0 02 00             	lock add (%eax),%al
+  101a63:	00 28                	add    %ch,(%eax)
+  101a65:	ed                   	in     (%dx),%eax
+  101a66:	ff                   	(bad)  
+  101a67:	ff 27                	jmp    *(%edi)
+  101a69:	00 00                	add    %al,(%eax)
+  101a6b:	00 00                	add    %al,(%eax)
+  101a6d:	41                   	inc    %ecx
+  101a6e:	0e                   	push   %cs
+  101a6f:	08 85 02 42 0d 05    	or     %al,0x50d4202(%ebp)
+  101a75:	63 c5                	arpl   %ax,%bp
+  101a77:	0c 04                	or     $0x4,%al
+  101a79:	04 00                	add    $0x0,%al
+  101a7b:	00 1c 00             	add    %bl,(%eax,%eax,1)
+  101a7e:	00 00                	add    %al,(%eax)
+  101a80:	10 03                	adc    %al,(%ebx)
+  101a82:	00 00                	add    %al,(%eax)
+  101a84:	30 ed                	xor    %ch,%ch
+  101a86:	ff                   	(bad)  
+  101a87:	ff 25 00 00 00 00    	jmp    *0x0
+  101a8d:	41                   	inc    %ecx
+  101a8e:	0e                   	push   %cs
+  101a8f:	08 85 02 42 0d 05    	or     %al,0x50d4202(%ebp)
+  101a95:	61                   	popa   
+  101a96:	c5 0c 04             	lds    (%esp,%eax,1),%ecx
+  101a99:	04 00                	add    $0x0,%al
+  101a9b:	00 20                	add    %ah,(%eax)
+  101a9d:	00 00                	add    %al,(%eax)
+  101a9f:	00 30                	add    %dh,(%eax)
+  101aa1:	03 00                	add    (%eax),%eax
+  101aa3:	00 36                	add    %dh,(%esi)
+  101aa5:	ed                   	in     (%dx),%eax
+  101aa6:	ff                   	(bad)  
+  101aa7:	ff                   	(bad)  
+  101aa8:	3e 00 00             	add    %al,%ds:(%eax)
+  101aab:	00 00                	add    %al,(%eax)
+  101aad:	41                   	inc    %ecx
+  101aae:	0e                   	push   %cs
+  101aaf:	08 85 02 42 0d 05    	or     %al,0x50d4202(%ebp)
+  101ab5:	44                   	inc    %esp
+  101ab6:	83 03 76             	addl   $0x76,(%ebx)
+  101ab9:	c5 c3 0c             	(bad)
+  101abc:	04 04                	add    $0x4,%al
+  101abe:	00 00                	add    %al,(%eax)
+  101ac0:	1c 00                	sbb    $0x0,%al
+  101ac2:	00 00                	add    %al,(%eax)
+  101ac4:	54                   	push   %esp
+  101ac5:	03 00                	add    (%eax),%eax
+  101ac7:	00 50 ed             	add    %dl,-0x13(%eax)
+  101aca:	ff                   	(bad)  
+  101acb:	ff 2a                	ljmp   *(%edx)
+  101acd:	00 00                	add    %al,(%eax)
+  101acf:	00 00                	add    %al,(%eax)
+  101ad1:	41                   	inc    %ecx
+  101ad2:	0e                   	push   %cs
+  101ad3:	08 85 02 42 0d 05    	or     %al,0x50d4202(%ebp)
+  101ad9:	66 c5 0c 04          	lds    (%esp,%eax,1),%cx
+  101add:	04 00                	add    $0x0,%al
+  101adf:	00 1c 00             	add    %bl,(%eax,%eax,1)
+  101ae2:	00 00                	add    %al,(%eax)
+  101ae4:	74 03                	je     101ae9 <_ZN14KeyboardDriver15HandleInterruptEj+0x495>
+  101ae6:	00 00                	add    %al,(%eax)
+  101ae8:	5a                   	pop    %edx
+  101ae9:	ed                   	in     (%dx),%eax
+  101aea:	ff                   	(bad)  
+  101aeb:	ff 1b                	lcall  *(%ebx)
+  101aed:	00 00                	add    %al,(%eax)
+  101aef:	00 00                	add    %al,(%eax)
+  101af1:	41                   	inc    %ecx
+  101af2:	0e                   	push   %cs
+  101af3:	08 85 02 42 0d 05    	or     %al,0x50d4202(%ebp)
+  101af9:	57                   	push   %edi
+  101afa:	c5 0c 04             	lds    (%esp,%eax,1),%ecx
+  101afd:	04 00                	add    $0x0,%al
+  101aff:	00 1c 00             	add    %bl,(%eax,%eax,1)
+  101b02:	00 00                	add    %al,(%eax)
+  101b04:	94                   	xchg   %eax,%esp
+  101b05:	03 00                	add    (%eax),%eax
+  101b07:	00 56 ed             	add    %dl,-0x13(%esi)
+  101b0a:	ff                   	(bad)  
+  101b0b:	ff 22                	jmp    *(%edx)
+  101b0d:	00 00                	add    %al,(%eax)
+  101b0f:	00 00                	add    %al,(%eax)
+  101b11:	41                   	inc    %ecx
+  101b12:	0e                   	push   %cs
+  101b13:	08 85 02 42 0d 05    	or     %al,0x50d4202(%ebp)
+  101b19:	5e                   	pop    %esi
+  101b1a:	c5 0c 04             	lds    (%esp,%eax,1),%ecx
+  101b1d:	04 00                	add    $0x0,%al
+  101b1f:	00 20                	add    %ah,(%eax)
+  101b21:	00 00                	add    %al,(%eax)
+  101b23:	00 b4 03 00 00 58 ed 	add    %dh,-0x12a80000(%ebx,%eax,1)
+  101b2a:	ff                   	(bad)  
+  101b2b:	ff                   	(bad)  
+  101b2c:	3e 00 00             	add    %al,%ds:(%eax)
+  101b2f:	00 00                	add    %al,(%eax)
+  101b31:	41                   	inc    %ecx
+  101b32:	0e                   	push   %cs
+  101b33:	08 85 02 42 0d 05    	or     %al,0x50d4202(%ebp)
+  101b39:	44                   	inc    %esp
+  101b3a:	83 03 76             	addl   $0x76,(%ebx)
+  101b3d:	c5 c3 0c             	(bad)
+  101b40:	04 04                	add    $0x4,%al
+  101b42:	00 00                	add    %al,(%eax)
+  101b44:	1c 00                	sbb    $0x0,%al
+  101b46:	00 00                	add    %al,(%eax)
+  101b48:	d8 03                	fadds  (%ebx)
+  101b4a:	00 00                	add    %al,(%eax)
+  101b4c:	72 ed                	jb     101b3b <_ZN14KeyboardDriver15HandleInterruptEj+0x4e7>
+  101b4e:	ff                   	(bad)  
+  101b4f:	ff 2a                	ljmp   *(%edx)
+  101b51:	00 00                	add    %al,(%eax)
+  101b53:	00 00                	add    %al,(%eax)
+  101b55:	41                   	inc    %ecx
+  101b56:	0e                   	push   %cs
+  101b57:	08 85 02 42 0d 05    	or     %al,0x50d4202(%ebp)
+  101b5d:	66 c5 0c 04          	lds    (%esp,%eax,1),%cx
+  101b61:	04 00                	add    $0x0,%al
+  101b63:	00 1c 00             	add    %bl,(%eax,%eax,1)
+  101b66:	00 00                	add    %al,(%eax)
+  101b68:	f8                   	clc    
+  101b69:	03 00                	add    (%eax),%eax
+  101b6b:	00 7c ed ff          	add    %bh,-0x1(%ebp,%ebp,8)
+  101b6f:	ff 29                	ljmp   *(%ecx)
+  101b71:	00 00                	add    %al,(%eax)
+  101b73:	00 00                	add    %al,(%eax)
+  101b75:	41                   	inc    %ecx
+  101b76:	0e                   	push   %cs
+  101b77:	08 85 02 42 0d 05    	or     %al,0x50d4202(%ebp)
+  101b7d:	65 c5 0c 04          	lds    %gs:(%esp,%eax,1),%ecx
+  101b81:	04 00                	add    $0x0,%al
+  101b83:	00 1c 00             	add    %bl,(%eax,%eax,1)
+  101b86:	00 00                	add    %al,(%eax)
+  101b88:	18 04 00             	sbb    %al,(%eax,%eax,1)
+  101b8b:	00 38                	add    %bh,(%eax)
+  101b8d:	ef                   	out    %eax,(%dx)
+  101b8e:	ff                   	(bad)  
+  101b8f:	ff 44 00 00          	incl   0x0(%eax,%eax,1)
+  101b93:	00 00                	add    %al,(%eax)
+  101b95:	41                   	inc    %ecx
+  101b96:	0e                   	push   %cs
+  101b97:	08 85 02 42 0d 05    	or     %al,0x50d4202(%ebp)
+  101b9d:	02 40 c5             	add    -0x3b(%eax),%al
+  101ba0:	0c 04                	or     $0x4,%al
+  101ba2:	04 00                	add    $0x0,%al
+  101ba4:	1c 00                	sbb    $0x0,%al
+  101ba6:	00 00                	add    %al,(%eax)
+  101ba8:	38 04 00             	cmp    %al,(%eax,%eax,1)
+  101bab:	00 5c ef ff          	add    %bl,-0x1(%edi,%ebp,8)
+  101baf:	ff 4a 00             	decl   0x0(%edx)
+  101bb2:	00 00                	add    %al,(%eax)
+  101bb4:	00 41 0e             	add    %al,0xe(%ecx)
+  101bb7:	08 85 02 42 0d 05    	or     %al,0x50d4202(%ebp)
+  101bbd:	02 46 c5             	add    -0x3b(%esi),%al
+  101bc0:	0c 04                	or     $0x4,%al
+  101bc2:	04 00                	add    $0x0,%al
+  101bc4:	1c 00                	sbb    $0x0,%al
+  101bc6:	00 00                	add    %al,(%eax)
+  101bc8:	58                   	pop    %eax
+  101bc9:	04 00                	add    $0x0,%al
+  101bcb:	00 86 ef ff ff 12    	add    %al,0x12ffffef(%esi)
+  101bd1:	00 00                	add    %al,(%eax)
+  101bd3:	00 00                	add    %al,(%eax)
+  101bd5:	41                   	inc    %ecx
+  101bd6:	0e                   	push   %cs
+  101bd7:	08 85 02 42 0d 05    	or     %al,0x50d4202(%ebp)
+  101bdd:	4e                   	dec    %esi
+  101bde:	c5 0c 04             	lds    (%esp,%eax,1),%ecx
+  101be1:	04 00                	add    $0x0,%al
+  101be3:	00 28                	add    %ch,(%eax)
+  101be5:	00 00                	add    %al,(%eax)
+  101be7:	00 78 04             	add    %bh,0x4(%eax)
+  101bea:	00 00                	add    %al,(%eax)
+  101bec:	78 ef                	js     101bdd <_ZN14KeyboardDriver15HandleInterruptEj+0x589>
+  101bee:	ff                   	(bad)  
+  101bef:	ff 9d 00 00 00 00    	lcall  *0x0(%ebp)
+  101bf5:	41                   	inc    %ecx
+  101bf6:	0e                   	push   %cs
+  101bf7:	08 85 02 42 0d 05    	or     %al,0x50d4202(%ebp)
+  101bfd:	46                   	inc    %esi
+  101bfe:	87 03                	xchg   %eax,(%ebx)
+  101c00:	86 04 83             	xchg   %al,(%ebx,%eax,4)
+  101c03:	05 02 90 c3 41       	add    $0x41c39002,%eax
+  101c08:	c6 41 c7 41          	movb   $0x41,-0x39(%ecx)
+  101c0c:	c5 0c 04             	lds    (%esp,%eax,1),%ecx
+  101c0f:	04 20                	add    $0x20,%al
+  101c11:	00 00                	add    %al,(%eax)
+  101c13:	00 a4 04 00 00 ea ef 	add    %ah,-0x10160000(%esp,%eax,1)
+  101c1a:	ff                   	(bad)  
+  101c1b:	ff                   	(bad)  
+  101c1c:	eb 06                	jmp    101c24 <_ZN14KeyboardDriver15HandleInterruptEj+0x5d0>
+  101c1e:	00 00                	add    %al,(%eax)
+  101c20:	00 41 0e             	add    %al,0xe(%ecx)
+  101c23:	08 85 02 42 0d 05    	or     %al,0x50d4202(%ebp)
+  101c29:	44                   	inc    %esp
+  101c2a:	83 03 03             	addl   $0x3,(%ebx)
+  101c2d:	e3 06                	jecxz  101c35 <_ZN14KeyboardDriver15HandleInterruptEj+0x5e1>
+  101c2f:	c5 c3 0c             	(bad)
+  101c32:	04 04                	add    $0x4,%al
+  101c34:	20 00                	and    %al,(%eax)
+  101c36:	00 00                	add    %al,(%eax)
+  101c38:	c8 04 00 00          	enter  $0x4,$0x0
+  101c3c:	b2 f6                	mov    $0xf6,%dl
+  101c3e:	ff                   	(bad)  
+  101c3f:	ff 76 00             	push   0x0(%esi)
+  101c42:	00 00                	add    %al,(%eax)
+  101c44:	00 41 0e             	add    %al,0xe(%ecx)
+  101c47:	08 85 02 42 0d 05    	or     %al,0x50d4202(%ebp)
+  101c4d:	44                   	inc    %esp
+  101c4e:	83 03 02             	addl   $0x2,(%ebx)
+  101c51:	6e                   	outsb  %ds:(%esi),(%dx)
+  101c52:	c5 c3 0c             	(bad)
+  101c55:	04 04                	add    $0x4,%al
+  101c57:	00 1c 00             	add    %bl,(%eax,%eax,1)
+  101c5a:	00 00                	add    %al,(%eax)
+  101c5c:	ec                   	in     (%dx),%al
+  101c5d:	04 00                	add    $0x0,%al
+  101c5f:	00 04 f7             	add    %al,(%edi,%esi,8)
+  101c62:	ff                   	(bad)  
+  101c63:	ff 19                	lcall  *(%ecx)
+  101c65:	00 00                	add    %al,(%eax)
+  101c67:	00 00                	add    %al,(%eax)
+  101c69:	41                   	inc    %ecx
+  101c6a:	0e                   	push   %cs
+  101c6b:	08 85 02 42 0d 05    	or     %al,0x50d4202(%ebp)
+  101c71:	55                   	push   %ebp
+  101c72:	c5 0c 04             	lds    (%esp,%eax,1),%ecx
+  101c75:	04 00                	add    $0x0,%al
+  101c77:	00 20                	add    %ah,(%eax)
+  101c79:	00 00                	add    %al,(%eax)
+  101c7b:	00 0c 05 00 00 fe f6 	add    %cl,-0x9020000(,%eax,1)
+  101c82:	ff                   	(bad)  
+  101c83:	ff                   	(bad)  
+  101c84:	3e 00 00             	add    %al,%ds:(%eax)
+  101c87:	00 00                	add    %al,(%eax)
+  101c89:	41                   	inc    %ecx
+  101c8a:	0e                   	push   %cs
+  101c8b:	08 85 02 42 0d 05    	or     %al,0x50d4202(%ebp)
+  101c91:	44                   	inc    %esp
+  101c92:	83 03 76             	addl   $0x76,(%ebx)
+  101c95:	c5 c3 0c             	(bad)
+  101c98:	04 04                	add    $0x4,%al
+  101c9a:	00 00                	add    %al,(%eax)
+  101c9c:	1c 00                	sbb    $0x0,%al
+  101c9e:	00 00                	add    %al,(%eax)
+  101ca0:	30 05 00 00 18 f7    	xor    %al,0xf7180000
+  101ca6:	ff                   	(bad)  
+  101ca7:	ff 26                	jmp    *(%esi)
+  101ca9:	00 00                	add    %al,(%eax)
+  101cab:	00 00                	add    %al,(%eax)
+  101cad:	41                   	inc    %ecx
+  101cae:	0e                   	push   %cs
+  101caf:	08 85 02 42 0d 05    	or     %al,0x50d4202(%ebp)
+  101cb5:	62 c5 0c 04 04       	(bad)
+  101cba:	00 00                	add    %al,(%eax)
+  101cbc:	1c 00                	sbb    $0x0,%al
+  101cbe:	00 00                	add    %al,(%eax)
+  101cc0:	50                   	push   %eax
+  101cc1:	05 00 00 1e f7       	add    $0xf71e0000,%eax
+  101cc6:	ff                   	(bad)  
+  101cc7:	ff 41 00             	incl   0x0(%ecx)
+  101cca:	00 00                	add    %al,(%eax)
+  101ccc:	00 41 0e             	add    %al,0xe(%ecx)
+  101ccf:	08 85 02 42 0d 05    	or     %al,0x50d4202(%ebp)
+  101cd5:	7d c5                	jge    101c9c <_ZN14KeyboardDriver15HandleInterruptEj+0x648>
+  101cd7:	0c 04                	or     $0x4,%al
+  101cd9:	04 00                	add    $0x0,%al
+  101cdb:	00 20                	add    %ah,(%eax)
+  101cdd:	00 00                	add    %al,(%eax)
+  101cdf:	00 70 05             	add    %dh,0x5(%eax)
+  101ce2:	00 00                	add    %al,(%eax)
+  101ce4:	40                   	inc    %eax
+  101ce5:	f7 ff                	idiv   %edi
+  101ce7:	ff                   	(bad)  
+  101ce8:	bd 00 00 00 00       	mov    $0x0,%ebp
+  101ced:	41                   	inc    %ecx
+  101cee:	0e                   	push   %cs
+  101cef:	08 85 02 42 0d 05    	or     %al,0x50d4202(%ebp)
+  101cf5:	44                   	inc    %esp
+  101cf6:	83 03 02             	addl   $0x2,(%ebx)
+  101cf9:	b5 c5                	mov    $0xc5,%ch
+  101cfb:	c3                   	ret    
+  101cfc:	0c 04                	or     $0x4,%al
+  101cfe:	04 00                	add    $0x0,%al
+  101d00:	20 00                	and    %al,(%eax)
+  101d02:	00 00                	add    %al,(%eax)
+  101d04:	94                   	xchg   %eax,%esp
+  101d05:	05 00 00 da f7       	add    $0xf7da0000,%eax
+  101d0a:	ff                   	(bad)  
+  101d0b:	ff 1c 01             	lcall  *(%ecx,%eax,1)
+  101d0e:	00 00                	add    %al,(%eax)
+  101d10:	00 41 0e             	add    %al,0xe(%ecx)
+  101d13:	08 85 02 42 0d 05    	or     %al,0x50d4202(%ebp)
+  101d19:	44                   	inc    %esp
+  101d1a:	83 03 03             	addl   $0x3,(%ebx)
+  101d1d:	14 01                	adc    $0x1,%al
+  101d1f:	c5 c3 0c             	(bad)
+  101d22:	04 04                	add    $0x4,%al
+  101d24:	20 00                	and    %al,(%eax)
+  101d26:	00 00                	add    %al,(%eax)
+  101d28:	b8 05 00 00 d2       	mov    $0xd2000005,%eax
+  101d2d:	f8                   	clc    
+  101d2e:	ff                   	(bad)  
+  101d2f:	ff 56 00             	call   *0x0(%esi)
+  101d32:	00 00                	add    %al,(%eax)
+  101d34:	00 41 0e             	add    %al,0xe(%ecx)
+  101d37:	08 85 02 42 0d 05    	or     %al,0x50d4202(%ebp)
+  101d3d:	44                   	inc    %esp
+  101d3e:	83 03 02             	addl   $0x2,(%ebx)
+  101d41:	4e                   	dec    %esi
+  101d42:	c5 c3 0c             	(bad)
+  101d45:	04 04                	add    $0x4,%al
+  101d47:	00 20                	add    %ah,(%eax)
+  101d49:	00 00                	add    %al,(%eax)
+  101d4b:	00 dc                	add    %bl,%ah
+  101d4d:	05 00 00 04 f9       	add    $0xf9040000,%eax
+  101d52:	ff                   	(bad)  
+  101d53:	ff 51 00             	call   *0x0(%ecx)
+  101d56:	00 00                	add    %al,(%eax)
+  101d58:	00 41 0e             	add    %al,0xe(%ecx)
+  101d5b:	08 85 02 42 0d 05    	or     %al,0x50d4202(%ebp)
+  101d61:	44                   	inc    %esp
+  101d62:	83 03 02             	addl   $0x2,(%ebx)
+  101d65:	49                   	dec    %ecx
+  101d66:	c5 c3 0c             	(bad)
+  101d69:	04 04                	add    $0x4,%al
+	...
+
+Disassembly of section .data:
+
+00101d6c <end_ctors>:
+	...
+
+Disassembly of section .got.plt:
+
+00101d70 <_GLOBAL_OFFSET_TABLE_>:
+	...
+
+Disassembly of section .data.rel.ro.local._ZTV12Port8BitSlow:
+
+00101d7c <_ZTV12Port8BitSlow>:
+	...
+  101d84:	e8                   	.byte 0xe8
+  101d85:	08 10                	or     %dl,(%eax)
+	...
+
+Disassembly of section .data.rel.ro.local._ZTV9Port32Bit:
+
+00101d88 <_ZTV9Port32Bit>:
+	...
+  101d90:	42                   	inc    %edx
+  101d91:	08 10                	or     %dl,(%eax)
+  101d93:	00 5e 08             	add    %bl,0x8(%esi)
+  101d96:	10 00                	adc    %al,(%eax)
+
+Disassembly of section .data.rel.ro.local._ZTV9Port16Bit:
+
+00101d98 <_ZTV9Port16Bit>:
+	...
+  101da0:	8c 07                	mov    %es,(%edi)
+  101da2:	10 00                	adc    %al,(%eax)
+  101da4:	b4 07                	mov    $0x7,%ah
+  101da6:	10 00                	adc    %al,(%eax)
+
+Disassembly of section .data.rel.ro.local._ZTV8Port8Bit:
+
+00101da8 <_ZTV8Port8Bit>:
+	...
+  101db0:	da 06                	fiaddl (%esi)
+  101db2:	10 00                	adc    %al,(%eax)
+  101db4:	00 07                	add    %al,(%edi)
+  101db6:	10 00                	adc    %al,(%eax)
+
+Disassembly of section .data.rel.ro.local._ZTV16InterruptHandler:
+
+00101db8 <_ZTV16InterruptHandler>:
+	...
+  101dc0:	52                   	push   %edx
+  101dc1:	0b 10                	or     (%eax),%edx
+	...
+
+Disassembly of section .data.rel.ro.local._ZTV14KeyboardDriver:
+
+00101dc4 <_ZTV14KeyboardDriver>:
+	...
+  101dcc:	54                   	push   %esp
+  101dcd:	16                   	push   %ss
+  101dce:	10 00                	adc    %al,(%eax)
+
+Disassembly of section .bss:
+
+00101de0 <kernel_stack>:
+	...
+
+00301de0 <_ZZ6printfPKcE1x>:
+	...
+
+00301de1 <_ZZ6printfPKcE1y>:
+	...
+
+00301e00 <_ZN16InterruptManager24interruptDescriptorTableE>:
+	...
+
+00302600 <_ZN16InterruptManager22ActiveInterruptManagerE>:
+  302600:	00 00                	add    %al,(%eax)
 	...

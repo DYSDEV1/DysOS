@@ -50,14 +50,15 @@ InterruptManager::InterruptManager(uint16_t hardwareInterruptOffset, GlobalDescr
     uint32_t CodeSegment = globalDescriptorTable->CodeSegmentSelector();
 
     const uint8_t IDT_INTERRUPT_GATE = 0xE;
-    for(uint8_t i = 255; i > 0; --i)
+    for (uint16_t i = 0; i < 256; ++i)
     {
         SetInterruptDescriptorTableEntry(i, CodeSegment, &InterruptIgnore, 0, IDT_INTERRUPT_GATE);
-        handlers[i] = nullptr;
+        handlers[i] = 0;
     }
 
 
     SetInterruptDescriptorTableEntry(0, CodeSegment, &InterruptIgnore, 0, IDT_INTERRUPT_GATE);
+
     SetInterruptDescriptorTableEntry(0x00, CodeSegment, &HandleException0x00, 0, IDT_INTERRUPT_GATE);
     SetInterruptDescriptorTableEntry(0x01, CodeSegment, &HandleException0x01, 0, IDT_INTERRUPT_GATE);
     SetInterruptDescriptorTableEntry(0x02, CodeSegment, &HandleException0x02, 0, IDT_INTERRUPT_GATE);
@@ -155,20 +156,21 @@ uint32_t InterruptManager::HandleInterrupt(uint8_t interrupt, uint32_t esp)
     return esp;
 }
 
-uint32_t InterruptManager::DoHandleInterrupt(uint8_t interrupt, uint32_t esp)
-{
-    if(handlers[interrupt] != 0){
-        esp = handlers[interrupt]->HandleInterrupt(esp);
-    }
-    else if(interrupt != 0x20)
+    uint32_t InterruptManager::DoHandleInterrupt(uint8_t interrupt, uint32_t esp)
     {
-        printf("UNHANDLED INTERRUPT: ");
-        printfHex(interrupt); 
+        if(handlers[interrupt] != 0){
+            esp = handlers[interrupt]->HandleInterrupt(esp);
+        }
+        else if(interrupt != 0x20)
+        {
+            printf("UNHANDLED INTERRUPT: ");
+            printfHex(interrupt); 
+            printf("\n");
+        }
+        if(interrupt >= 0x20 && interrupt < 0x30){
+            picMasterCommand.Write(0x20);
+            if(interrupt >= 0x28)
+                picSlaveCommand.Write(0x20);
+        }
+        return esp;
     }
-    if(interrupt >= 0x20 && interrupt <= 0x30){
-        picMasterCommand.Write(0x20);
-        if(interrupt >= 0x28)
-            picSlaveCommand.Write(0x20);
-    }
-    return esp;
-}
