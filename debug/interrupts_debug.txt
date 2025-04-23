@@ -1,0 +1,839 @@
+
+build/interrupts.o:     file format elf32-i386
+
+
+Disassembly of section .text:
+
+00000000 <_ZN16InterruptHandlerC1EP16InterruptManagerh>:
+   0:	55                   	push   %ebp
+   1:	89 e5                	mov    %esp,%ebp
+   3:	83 ec 04             	sub    $0x4,%esp
+   6:	8b 45 10             	mov    0x10(%ebp),%eax
+   9:	88 45 fc             	mov    %al,-0x4(%ebp)
+   c:	ba 08 00 00 00       	mov    $0x8,%edx
+  11:	8b 45 08             	mov    0x8(%ebp),%eax
+  14:	89 10                	mov    %edx,(%eax)
+  16:	8b 45 08             	mov    0x8(%ebp),%eax
+  19:	0f b6 55 fc          	movzbl -0x4(%ebp),%edx
+  1d:	88 50 04             	mov    %dl,0x4(%eax)
+  20:	8b 45 08             	mov    0x8(%ebp),%eax
+  23:	8b 55 0c             	mov    0xc(%ebp),%edx
+  26:	89 50 08             	mov    %edx,0x8(%eax)
+  29:	0f b6 55 fc          	movzbl -0x4(%ebp),%edx
+  2d:	8b 45 0c             	mov    0xc(%ebp),%eax
+  30:	8b 4d 08             	mov    0x8(%ebp),%ecx
+  33:	89 0c 90             	mov    %ecx,(%eax,%edx,4)
+  36:	90                   	nop
+  37:	c9                   	leave  
+  38:	c3                   	ret    
+  39:	90                   	nop
+
+0000003a <_ZN16InterruptHandlerD1Ev>:
+  3a:	55                   	push   %ebp
+  3b:	89 e5                	mov    %esp,%ebp
+  3d:	ba 08 00 00 00       	mov    $0x8,%edx
+  42:	8b 45 08             	mov    0x8(%ebp),%eax
+  45:	89 10                	mov    %edx,(%eax)
+  47:	8b 45 08             	mov    0x8(%ebp),%eax
+  4a:	8b 40 08             	mov    0x8(%eax),%eax
+  4d:	8b 55 08             	mov    0x8(%ebp),%edx
+  50:	0f b6 52 04          	movzbl 0x4(%edx),%edx
+  54:	0f b6 d2             	movzbl %dl,%edx
+  57:	8b 04 90             	mov    (%eax,%edx,4),%eax
+  5a:	39 45 08             	cmp    %eax,0x8(%ebp)
+  5d:	75 17                	jne    76 <_ZN16InterruptHandlerD1Ev+0x3c>
+  5f:	8b 45 08             	mov    0x8(%ebp),%eax
+  62:	8b 40 08             	mov    0x8(%eax),%eax
+  65:	8b 55 08             	mov    0x8(%ebp),%edx
+  68:	0f b6 52 04          	movzbl 0x4(%edx),%edx
+  6c:	0f b6 d2             	movzbl %dl,%edx
+  6f:	c7 04 90 00 00 00 00 	movl   $0x0,(%eax,%edx,4)
+  76:	90                   	nop
+  77:	5d                   	pop    %ebp
+  78:	c3                   	ret    
+  79:	90                   	nop
+
+0000007a <_ZN16InterruptHandler15HandleInterruptEj>:
+  7a:	55                   	push   %ebp
+  7b:	89 e5                	mov    %esp,%ebp
+  7d:	8b 45 0c             	mov    0xc(%ebp),%eax
+  80:	5d                   	pop    %ebp
+  81:	c3                   	ret    
+
+00000082 <_ZN16InterruptManager32SetInterruptDescriptorTableEntryEhtPFvvEhh>:
+  82:	55                   	push   %ebp
+  83:	89 e5                	mov    %esp,%ebp
+  85:	53                   	push   %ebx
+  86:	83 ec 20             	sub    $0x20,%esp
+  89:	8b 5d 08             	mov    0x8(%ebp),%ebx
+  8c:	8b 45 0c             	mov    0xc(%ebp),%eax
+  8f:	8b 4d 14             	mov    0x14(%ebp),%ecx
+  92:	8b 55 18             	mov    0x18(%ebp),%edx
+  95:	88 5d e8             	mov    %bl,-0x18(%ebp)
+  98:	66 89 45 e4          	mov    %ax,-0x1c(%ebp)
+  9c:	89 c8                	mov    %ecx,%eax
+  9e:	88 45 e0             	mov    %al,-0x20(%ebp)
+  a1:	89 d0                	mov    %edx,%eax
+  a3:	88 45 dc             	mov    %al,-0x24(%ebp)
+  a6:	8b 55 10             	mov    0x10(%ebp),%edx
+  a9:	0f b6 45 e8          	movzbl -0x18(%ebp),%eax
+  ad:	66 89 14 c5 00 00 00 	mov    %dx,0x0(,%eax,8)
+  b4:	00 
+  b5:	8b 45 10             	mov    0x10(%ebp),%eax
+  b8:	c1 e8 10             	shr    $0x10,%eax
+  bb:	89 c2                	mov    %eax,%edx
+  bd:	0f b6 45 e8          	movzbl -0x18(%ebp),%eax
+  c1:	66 89 14 c5 06 00 00 	mov    %dx,0x6(,%eax,8)
+  c8:	00 
+  c9:	0f b6 45 e8          	movzbl -0x18(%ebp),%eax
+  cd:	0f b7 55 e4          	movzwl -0x1c(%ebp),%edx
+  d1:	66 89 14 c5 02 00 00 	mov    %dx,0x2(,%eax,8)
+  d8:	00 
+  d9:	c6 45 fb 80          	movb   $0x80,-0x5(%ebp)
+  dd:	0f b6 45 e0          	movzbl -0x20(%ebp),%eax
+  e1:	c1 e0 05             	shl    $0x5,%eax
+  e4:	83 e0 60             	and    $0x60,%eax
+  e7:	0a 45 dc             	or     -0x24(%ebp),%al
+  ea:	89 c2                	mov    %eax,%edx
+  ec:	0f b6 45 e8          	movzbl -0x18(%ebp),%eax
+  f0:	83 ca 80             	or     $0xffffff80,%edx
+  f3:	88 14 c5 05 00 00 00 	mov    %dl,0x5(,%eax,8)
+  fa:	0f b6 45 e8          	movzbl -0x18(%ebp),%eax
+  fe:	c6 04 c5 04 00 00 00 	movb   $0x0,0x4(,%eax,8)
+ 105:	00 
+ 106:	90                   	nop
+ 107:	8b 5d fc             	mov    -0x4(%ebp),%ebx
+ 10a:	c9                   	leave  
+ 10b:	c3                   	ret    
+
+0000010c <_ZN16InterruptManagerC1EtP21GlobalDescriptorTable>:
+ 10c:	55                   	push   %ebp
+ 10d:	89 e5                	mov    %esp,%ebp
+ 10f:	83 ec 28             	sub    $0x28,%esp
+ 112:	8b 45 0c             	mov    0xc(%ebp),%eax
+ 115:	66 89 45 e4          	mov    %ax,-0x1c(%ebp)
+ 119:	8b 45 08             	mov    0x8(%ebp),%eax
+ 11c:	05 04 04 00 00       	add    $0x404,%eax
+ 121:	83 ec 08             	sub    $0x8,%esp
+ 124:	6a 20                	push   $0x20
+ 126:	50                   	push   %eax
+ 127:	e8 fc ff ff ff       	call   128 <_ZN16InterruptManagerC1EtP21GlobalDescriptorTable+0x1c>
+ 12c:	83 c4 10             	add    $0x10,%esp
+ 12f:	8b 45 08             	mov    0x8(%ebp),%eax
+ 132:	05 0c 04 00 00       	add    $0x40c,%eax
+ 137:	83 ec 08             	sub    $0x8,%esp
+ 13a:	6a 21                	push   $0x21
+ 13c:	50                   	push   %eax
+ 13d:	e8 fc ff ff ff       	call   13e <_ZN16InterruptManagerC1EtP21GlobalDescriptorTable+0x32>
+ 142:	83 c4 10             	add    $0x10,%esp
+ 145:	8b 45 08             	mov    0x8(%ebp),%eax
+ 148:	05 14 04 00 00       	add    $0x414,%eax
+ 14d:	83 ec 08             	sub    $0x8,%esp
+ 150:	68 a0 00 00 00       	push   $0xa0
+ 155:	50                   	push   %eax
+ 156:	e8 fc ff ff ff       	call   157 <_ZN16InterruptManagerC1EtP21GlobalDescriptorTable+0x4b>
+ 15b:	83 c4 10             	add    $0x10,%esp
+ 15e:	8b 45 08             	mov    0x8(%ebp),%eax
+ 161:	05 1c 04 00 00       	add    $0x41c,%eax
+ 166:	83 ec 08             	sub    $0x8,%esp
+ 169:	68 a1 00 00 00       	push   $0xa1
+ 16e:	50                   	push   %eax
+ 16f:	e8 fc ff ff ff       	call   170 <_ZN16InterruptManagerC1EtP21GlobalDescriptorTable+0x64>
+ 174:	83 c4 10             	add    $0x10,%esp
+ 177:	8b 45 08             	mov    0x8(%ebp),%eax
+ 17a:	0f b7 55 e4          	movzwl -0x1c(%ebp),%edx
+ 17e:	66 89 90 00 04 00 00 	mov    %dx,0x400(%eax)
+ 185:	83 ec 0c             	sub    $0xc,%esp
+ 188:	ff 75 10             	push   0x10(%ebp)
+ 18b:	e8 fc ff ff ff       	call   18c <_ZN16InterruptManagerC1EtP21GlobalDescriptorTable+0x80>
+ 190:	83 c4 10             	add    $0x10,%esp
+ 193:	0f b7 c0             	movzwl %ax,%eax
+ 196:	89 45 f0             	mov    %eax,-0x10(%ebp)
+ 199:	c6 45 ef 0e          	movb   $0xe,-0x11(%ebp)
+ 19d:	66 c7 45 f6 00 00    	movw   $0x0,-0xa(%ebp)
+ 1a3:	eb 36                	jmp    1db <_ZN16InterruptManagerC1EtP21GlobalDescriptorTable+0xcf>
+ 1a5:	8b 45 f0             	mov    -0x10(%ebp),%eax
+ 1a8:	0f b7 d0             	movzwl %ax,%edx
+ 1ab:	0f b7 45 f6          	movzwl -0xa(%ebp),%eax
+ 1af:	0f b6 c0             	movzbl %al,%eax
+ 1b2:	83 ec 0c             	sub    $0xc,%esp
+ 1b5:	6a 0e                	push   $0xe
+ 1b7:	6a 00                	push   $0x0
+ 1b9:	68 00 00 00 00       	push   $0x0
+ 1be:	52                   	push   %edx
+ 1bf:	50                   	push   %eax
+ 1c0:	e8 fc ff ff ff       	call   1c1 <_ZN16InterruptManagerC1EtP21GlobalDescriptorTable+0xb5>
+ 1c5:	83 c4 20             	add    $0x20,%esp
+ 1c8:	0f b7 55 f6          	movzwl -0xa(%ebp),%edx
+ 1cc:	8b 45 08             	mov    0x8(%ebp),%eax
+ 1cf:	c7 04 90 00 00 00 00 	movl   $0x0,(%eax,%edx,4)
+ 1d6:	66 83 45 f6 01       	addw   $0x1,-0xa(%ebp)
+ 1db:	66 81 7d f6 ff 00    	cmpw   $0xff,-0xa(%ebp)
+ 1e1:	76 c2                	jbe    1a5 <_ZN16InterruptManagerC1EtP21GlobalDescriptorTable+0x99>
+ 1e3:	8b 45 f0             	mov    -0x10(%ebp),%eax
+ 1e6:	0f b7 c0             	movzwl %ax,%eax
+ 1e9:	83 ec 0c             	sub    $0xc,%esp
+ 1ec:	6a 0e                	push   $0xe
+ 1ee:	6a 00                	push   $0x0
+ 1f0:	68 00 00 00 00       	push   $0x0
+ 1f5:	50                   	push   %eax
+ 1f6:	6a 00                	push   $0x0
+ 1f8:	e8 fc ff ff ff       	call   1f9 <_ZN16InterruptManagerC1EtP21GlobalDescriptorTable+0xed>
+ 1fd:	83 c4 20             	add    $0x20,%esp
+ 200:	8b 45 f0             	mov    -0x10(%ebp),%eax
+ 203:	0f b7 c0             	movzwl %ax,%eax
+ 206:	83 ec 0c             	sub    $0xc,%esp
+ 209:	6a 0e                	push   $0xe
+ 20b:	6a 00                	push   $0x0
+ 20d:	68 00 00 00 00       	push   $0x0
+ 212:	50                   	push   %eax
+ 213:	6a 00                	push   $0x0
+ 215:	e8 fc ff ff ff       	call   216 <_ZN16InterruptManagerC1EtP21GlobalDescriptorTable+0x10a>
+ 21a:	83 c4 20             	add    $0x20,%esp
+ 21d:	8b 45 f0             	mov    -0x10(%ebp),%eax
+ 220:	0f b7 c0             	movzwl %ax,%eax
+ 223:	83 ec 0c             	sub    $0xc,%esp
+ 226:	6a 0e                	push   $0xe
+ 228:	6a 00                	push   $0x0
+ 22a:	68 00 00 00 00       	push   $0x0
+ 22f:	50                   	push   %eax
+ 230:	6a 01                	push   $0x1
+ 232:	e8 fc ff ff ff       	call   233 <_ZN16InterruptManagerC1EtP21GlobalDescriptorTable+0x127>
+ 237:	83 c4 20             	add    $0x20,%esp
+ 23a:	8b 45 f0             	mov    -0x10(%ebp),%eax
+ 23d:	0f b7 c0             	movzwl %ax,%eax
+ 240:	83 ec 0c             	sub    $0xc,%esp
+ 243:	6a 0e                	push   $0xe
+ 245:	6a 00                	push   $0x0
+ 247:	68 00 00 00 00       	push   $0x0
+ 24c:	50                   	push   %eax
+ 24d:	6a 02                	push   $0x2
+ 24f:	e8 fc ff ff ff       	call   250 <_ZN16InterruptManagerC1EtP21GlobalDescriptorTable+0x144>
+ 254:	83 c4 20             	add    $0x20,%esp
+ 257:	8b 45 f0             	mov    -0x10(%ebp),%eax
+ 25a:	0f b7 c0             	movzwl %ax,%eax
+ 25d:	83 ec 0c             	sub    $0xc,%esp
+ 260:	6a 0e                	push   $0xe
+ 262:	6a 00                	push   $0x0
+ 264:	68 00 00 00 00       	push   $0x0
+ 269:	50                   	push   %eax
+ 26a:	6a 03                	push   $0x3
+ 26c:	e8 fc ff ff ff       	call   26d <_ZN16InterruptManagerC1EtP21GlobalDescriptorTable+0x161>
+ 271:	83 c4 20             	add    $0x20,%esp
+ 274:	8b 45 f0             	mov    -0x10(%ebp),%eax
+ 277:	0f b7 c0             	movzwl %ax,%eax
+ 27a:	83 ec 0c             	sub    $0xc,%esp
+ 27d:	6a 0e                	push   $0xe
+ 27f:	6a 00                	push   $0x0
+ 281:	68 00 00 00 00       	push   $0x0
+ 286:	50                   	push   %eax
+ 287:	6a 04                	push   $0x4
+ 289:	e8 fc ff ff ff       	call   28a <_ZN16InterruptManagerC1EtP21GlobalDescriptorTable+0x17e>
+ 28e:	83 c4 20             	add    $0x20,%esp
+ 291:	8b 45 f0             	mov    -0x10(%ebp),%eax
+ 294:	0f b7 c0             	movzwl %ax,%eax
+ 297:	83 ec 0c             	sub    $0xc,%esp
+ 29a:	6a 0e                	push   $0xe
+ 29c:	6a 00                	push   $0x0
+ 29e:	68 00 00 00 00       	push   $0x0
+ 2a3:	50                   	push   %eax
+ 2a4:	6a 05                	push   $0x5
+ 2a6:	e8 fc ff ff ff       	call   2a7 <_ZN16InterruptManagerC1EtP21GlobalDescriptorTable+0x19b>
+ 2ab:	83 c4 20             	add    $0x20,%esp
+ 2ae:	8b 45 f0             	mov    -0x10(%ebp),%eax
+ 2b1:	0f b7 c0             	movzwl %ax,%eax
+ 2b4:	83 ec 0c             	sub    $0xc,%esp
+ 2b7:	6a 0e                	push   $0xe
+ 2b9:	6a 00                	push   $0x0
+ 2bb:	68 00 00 00 00       	push   $0x0
+ 2c0:	50                   	push   %eax
+ 2c1:	6a 06                	push   $0x6
+ 2c3:	e8 fc ff ff ff       	call   2c4 <_ZN16InterruptManagerC1EtP21GlobalDescriptorTable+0x1b8>
+ 2c8:	83 c4 20             	add    $0x20,%esp
+ 2cb:	8b 45 f0             	mov    -0x10(%ebp),%eax
+ 2ce:	0f b7 c0             	movzwl %ax,%eax
+ 2d1:	83 ec 0c             	sub    $0xc,%esp
+ 2d4:	6a 0e                	push   $0xe
+ 2d6:	6a 00                	push   $0x0
+ 2d8:	68 00 00 00 00       	push   $0x0
+ 2dd:	50                   	push   %eax
+ 2de:	6a 07                	push   $0x7
+ 2e0:	e8 fc ff ff ff       	call   2e1 <_ZN16InterruptManagerC1EtP21GlobalDescriptorTable+0x1d5>
+ 2e5:	83 c4 20             	add    $0x20,%esp
+ 2e8:	8b 45 f0             	mov    -0x10(%ebp),%eax
+ 2eb:	0f b7 c0             	movzwl %ax,%eax
+ 2ee:	83 ec 0c             	sub    $0xc,%esp
+ 2f1:	6a 0e                	push   $0xe
+ 2f3:	6a 00                	push   $0x0
+ 2f5:	68 00 00 00 00       	push   $0x0
+ 2fa:	50                   	push   %eax
+ 2fb:	6a 08                	push   $0x8
+ 2fd:	e8 fc ff ff ff       	call   2fe <_ZN16InterruptManagerC1EtP21GlobalDescriptorTable+0x1f2>
+ 302:	83 c4 20             	add    $0x20,%esp
+ 305:	8b 45 f0             	mov    -0x10(%ebp),%eax
+ 308:	0f b7 c0             	movzwl %ax,%eax
+ 30b:	83 ec 0c             	sub    $0xc,%esp
+ 30e:	6a 0e                	push   $0xe
+ 310:	6a 00                	push   $0x0
+ 312:	68 00 00 00 00       	push   $0x0
+ 317:	50                   	push   %eax
+ 318:	6a 09                	push   $0x9
+ 31a:	e8 fc ff ff ff       	call   31b <_ZN16InterruptManagerC1EtP21GlobalDescriptorTable+0x20f>
+ 31f:	83 c4 20             	add    $0x20,%esp
+ 322:	8b 45 f0             	mov    -0x10(%ebp),%eax
+ 325:	0f b7 c0             	movzwl %ax,%eax
+ 328:	83 ec 0c             	sub    $0xc,%esp
+ 32b:	6a 0e                	push   $0xe
+ 32d:	6a 00                	push   $0x0
+ 32f:	68 00 00 00 00       	push   $0x0
+ 334:	50                   	push   %eax
+ 335:	6a 0a                	push   $0xa
+ 337:	e8 fc ff ff ff       	call   338 <_ZN16InterruptManagerC1EtP21GlobalDescriptorTable+0x22c>
+ 33c:	83 c4 20             	add    $0x20,%esp
+ 33f:	8b 45 f0             	mov    -0x10(%ebp),%eax
+ 342:	0f b7 c0             	movzwl %ax,%eax
+ 345:	83 ec 0c             	sub    $0xc,%esp
+ 348:	6a 0e                	push   $0xe
+ 34a:	6a 00                	push   $0x0
+ 34c:	68 00 00 00 00       	push   $0x0
+ 351:	50                   	push   %eax
+ 352:	6a 0b                	push   $0xb
+ 354:	e8 fc ff ff ff       	call   355 <_ZN16InterruptManagerC1EtP21GlobalDescriptorTable+0x249>
+ 359:	83 c4 20             	add    $0x20,%esp
+ 35c:	8b 45 f0             	mov    -0x10(%ebp),%eax
+ 35f:	0f b7 c0             	movzwl %ax,%eax
+ 362:	83 ec 0c             	sub    $0xc,%esp
+ 365:	6a 0e                	push   $0xe
+ 367:	6a 00                	push   $0x0
+ 369:	68 00 00 00 00       	push   $0x0
+ 36e:	50                   	push   %eax
+ 36f:	6a 0c                	push   $0xc
+ 371:	e8 fc ff ff ff       	call   372 <_ZN16InterruptManagerC1EtP21GlobalDescriptorTable+0x266>
+ 376:	83 c4 20             	add    $0x20,%esp
+ 379:	8b 45 f0             	mov    -0x10(%ebp),%eax
+ 37c:	0f b7 c0             	movzwl %ax,%eax
+ 37f:	83 ec 0c             	sub    $0xc,%esp
+ 382:	6a 0e                	push   $0xe
+ 384:	6a 00                	push   $0x0
+ 386:	68 00 00 00 00       	push   $0x0
+ 38b:	50                   	push   %eax
+ 38c:	6a 0d                	push   $0xd
+ 38e:	e8 fc ff ff ff       	call   38f <_ZN16InterruptManagerC1EtP21GlobalDescriptorTable+0x283>
+ 393:	83 c4 20             	add    $0x20,%esp
+ 396:	8b 45 f0             	mov    -0x10(%ebp),%eax
+ 399:	0f b7 c0             	movzwl %ax,%eax
+ 39c:	83 ec 0c             	sub    $0xc,%esp
+ 39f:	6a 0e                	push   $0xe
+ 3a1:	6a 00                	push   $0x0
+ 3a3:	68 00 00 00 00       	push   $0x0
+ 3a8:	50                   	push   %eax
+ 3a9:	6a 0e                	push   $0xe
+ 3ab:	e8 fc ff ff ff       	call   3ac <_ZN16InterruptManagerC1EtP21GlobalDescriptorTable+0x2a0>
+ 3b0:	83 c4 20             	add    $0x20,%esp
+ 3b3:	8b 45 f0             	mov    -0x10(%ebp),%eax
+ 3b6:	0f b7 c0             	movzwl %ax,%eax
+ 3b9:	83 ec 0c             	sub    $0xc,%esp
+ 3bc:	6a 0e                	push   $0xe
+ 3be:	6a 00                	push   $0x0
+ 3c0:	68 00 00 00 00       	push   $0x0
+ 3c5:	50                   	push   %eax
+ 3c6:	6a 0f                	push   $0xf
+ 3c8:	e8 fc ff ff ff       	call   3c9 <_ZN16InterruptManagerC1EtP21GlobalDescriptorTable+0x2bd>
+ 3cd:	83 c4 20             	add    $0x20,%esp
+ 3d0:	8b 45 f0             	mov    -0x10(%ebp),%eax
+ 3d3:	0f b7 c0             	movzwl %ax,%eax
+ 3d6:	83 ec 0c             	sub    $0xc,%esp
+ 3d9:	6a 0e                	push   $0xe
+ 3db:	6a 00                	push   $0x0
+ 3dd:	68 00 00 00 00       	push   $0x0
+ 3e2:	50                   	push   %eax
+ 3e3:	6a 10                	push   $0x10
+ 3e5:	e8 fc ff ff ff       	call   3e6 <_ZN16InterruptManagerC1EtP21GlobalDescriptorTable+0x2da>
+ 3ea:	83 c4 20             	add    $0x20,%esp
+ 3ed:	8b 45 f0             	mov    -0x10(%ebp),%eax
+ 3f0:	0f b7 c0             	movzwl %ax,%eax
+ 3f3:	83 ec 0c             	sub    $0xc,%esp
+ 3f6:	6a 0e                	push   $0xe
+ 3f8:	6a 00                	push   $0x0
+ 3fa:	68 00 00 00 00       	push   $0x0
+ 3ff:	50                   	push   %eax
+ 400:	6a 11                	push   $0x11
+ 402:	e8 fc ff ff ff       	call   403 <_ZN16InterruptManagerC1EtP21GlobalDescriptorTable+0x2f7>
+ 407:	83 c4 20             	add    $0x20,%esp
+ 40a:	8b 45 f0             	mov    -0x10(%ebp),%eax
+ 40d:	0f b7 c0             	movzwl %ax,%eax
+ 410:	83 ec 0c             	sub    $0xc,%esp
+ 413:	6a 0e                	push   $0xe
+ 415:	6a 00                	push   $0x0
+ 417:	68 00 00 00 00       	push   $0x0
+ 41c:	50                   	push   %eax
+ 41d:	6a 12                	push   $0x12
+ 41f:	e8 fc ff ff ff       	call   420 <_ZN16InterruptManagerC1EtP21GlobalDescriptorTable+0x314>
+ 424:	83 c4 20             	add    $0x20,%esp
+ 427:	8b 45 f0             	mov    -0x10(%ebp),%eax
+ 42a:	0f b7 c0             	movzwl %ax,%eax
+ 42d:	83 ec 0c             	sub    $0xc,%esp
+ 430:	6a 0e                	push   $0xe
+ 432:	6a 00                	push   $0x0
+ 434:	68 00 00 00 00       	push   $0x0
+ 439:	50                   	push   %eax
+ 43a:	6a 13                	push   $0x13
+ 43c:	e8 fc ff ff ff       	call   43d <_ZN16InterruptManagerC1EtP21GlobalDescriptorTable+0x331>
+ 441:	83 c4 20             	add    $0x20,%esp
+ 444:	8b 45 f0             	mov    -0x10(%ebp),%eax
+ 447:	0f b7 d0             	movzwl %ax,%edx
+ 44a:	0f b7 45 e4          	movzwl -0x1c(%ebp),%eax
+ 44e:	0f b6 c0             	movzbl %al,%eax
+ 451:	83 ec 0c             	sub    $0xc,%esp
+ 454:	6a 0e                	push   $0xe
+ 456:	6a 00                	push   $0x0
+ 458:	68 00 00 00 00       	push   $0x0
+ 45d:	52                   	push   %edx
+ 45e:	50                   	push   %eax
+ 45f:	e8 fc ff ff ff       	call   460 <_ZN16InterruptManagerC1EtP21GlobalDescriptorTable+0x354>
+ 464:	83 c4 20             	add    $0x20,%esp
+ 467:	8b 45 f0             	mov    -0x10(%ebp),%eax
+ 46a:	0f b7 d0             	movzwl %ax,%edx
+ 46d:	0f b7 45 e4          	movzwl -0x1c(%ebp),%eax
+ 471:	83 c0 01             	add    $0x1,%eax
+ 474:	0f b6 c0             	movzbl %al,%eax
+ 477:	83 ec 0c             	sub    $0xc,%esp
+ 47a:	6a 0e                	push   $0xe
+ 47c:	6a 00                	push   $0x0
+ 47e:	68 00 00 00 00       	push   $0x0
+ 483:	52                   	push   %edx
+ 484:	50                   	push   %eax
+ 485:	e8 fc ff ff ff       	call   486 <_ZN16InterruptManagerC1EtP21GlobalDescriptorTable+0x37a>
+ 48a:	83 c4 20             	add    $0x20,%esp
+ 48d:	8b 45 f0             	mov    -0x10(%ebp),%eax
+ 490:	0f b7 d0             	movzwl %ax,%edx
+ 493:	0f b7 45 e4          	movzwl -0x1c(%ebp),%eax
+ 497:	83 c0 02             	add    $0x2,%eax
+ 49a:	0f b6 c0             	movzbl %al,%eax
+ 49d:	83 ec 0c             	sub    $0xc,%esp
+ 4a0:	6a 0e                	push   $0xe
+ 4a2:	6a 00                	push   $0x0
+ 4a4:	68 00 00 00 00       	push   $0x0
+ 4a9:	52                   	push   %edx
+ 4aa:	50                   	push   %eax
+ 4ab:	e8 fc ff ff ff       	call   4ac <_ZN16InterruptManagerC1EtP21GlobalDescriptorTable+0x3a0>
+ 4b0:	83 c4 20             	add    $0x20,%esp
+ 4b3:	8b 45 f0             	mov    -0x10(%ebp),%eax
+ 4b6:	0f b7 d0             	movzwl %ax,%edx
+ 4b9:	0f b7 45 e4          	movzwl -0x1c(%ebp),%eax
+ 4bd:	83 c0 03             	add    $0x3,%eax
+ 4c0:	0f b6 c0             	movzbl %al,%eax
+ 4c3:	83 ec 0c             	sub    $0xc,%esp
+ 4c6:	6a 0e                	push   $0xe
+ 4c8:	6a 00                	push   $0x0
+ 4ca:	68 00 00 00 00       	push   $0x0
+ 4cf:	52                   	push   %edx
+ 4d0:	50                   	push   %eax
+ 4d1:	e8 fc ff ff ff       	call   4d2 <_ZN16InterruptManagerC1EtP21GlobalDescriptorTable+0x3c6>
+ 4d6:	83 c4 20             	add    $0x20,%esp
+ 4d9:	8b 45 f0             	mov    -0x10(%ebp),%eax
+ 4dc:	0f b7 d0             	movzwl %ax,%edx
+ 4df:	0f b7 45 e4          	movzwl -0x1c(%ebp),%eax
+ 4e3:	83 c0 04             	add    $0x4,%eax
+ 4e6:	0f b6 c0             	movzbl %al,%eax
+ 4e9:	83 ec 0c             	sub    $0xc,%esp
+ 4ec:	6a 0e                	push   $0xe
+ 4ee:	6a 00                	push   $0x0
+ 4f0:	68 00 00 00 00       	push   $0x0
+ 4f5:	52                   	push   %edx
+ 4f6:	50                   	push   %eax
+ 4f7:	e8 fc ff ff ff       	call   4f8 <_ZN16InterruptManagerC1EtP21GlobalDescriptorTable+0x3ec>
+ 4fc:	83 c4 20             	add    $0x20,%esp
+ 4ff:	8b 45 f0             	mov    -0x10(%ebp),%eax
+ 502:	0f b7 d0             	movzwl %ax,%edx
+ 505:	0f b7 45 e4          	movzwl -0x1c(%ebp),%eax
+ 509:	83 c0 05             	add    $0x5,%eax
+ 50c:	0f b6 c0             	movzbl %al,%eax
+ 50f:	83 ec 0c             	sub    $0xc,%esp
+ 512:	6a 0e                	push   $0xe
+ 514:	6a 00                	push   $0x0
+ 516:	68 00 00 00 00       	push   $0x0
+ 51b:	52                   	push   %edx
+ 51c:	50                   	push   %eax
+ 51d:	e8 fc ff ff ff       	call   51e <_ZN16InterruptManagerC1EtP21GlobalDescriptorTable+0x412>
+ 522:	83 c4 20             	add    $0x20,%esp
+ 525:	8b 45 f0             	mov    -0x10(%ebp),%eax
+ 528:	0f b7 d0             	movzwl %ax,%edx
+ 52b:	0f b7 45 e4          	movzwl -0x1c(%ebp),%eax
+ 52f:	83 c0 06             	add    $0x6,%eax
+ 532:	0f b6 c0             	movzbl %al,%eax
+ 535:	83 ec 0c             	sub    $0xc,%esp
+ 538:	6a 0e                	push   $0xe
+ 53a:	6a 00                	push   $0x0
+ 53c:	68 00 00 00 00       	push   $0x0
+ 541:	52                   	push   %edx
+ 542:	50                   	push   %eax
+ 543:	e8 fc ff ff ff       	call   544 <_ZN16InterruptManagerC1EtP21GlobalDescriptorTable+0x438>
+ 548:	83 c4 20             	add    $0x20,%esp
+ 54b:	8b 45 f0             	mov    -0x10(%ebp),%eax
+ 54e:	0f b7 d0             	movzwl %ax,%edx
+ 551:	0f b7 45 e4          	movzwl -0x1c(%ebp),%eax
+ 555:	83 c0 07             	add    $0x7,%eax
+ 558:	0f b6 c0             	movzbl %al,%eax
+ 55b:	83 ec 0c             	sub    $0xc,%esp
+ 55e:	6a 0e                	push   $0xe
+ 560:	6a 00                	push   $0x0
+ 562:	68 00 00 00 00       	push   $0x0
+ 567:	52                   	push   %edx
+ 568:	50                   	push   %eax
+ 569:	e8 fc ff ff ff       	call   56a <_ZN16InterruptManagerC1EtP21GlobalDescriptorTable+0x45e>
+ 56e:	83 c4 20             	add    $0x20,%esp
+ 571:	8b 45 f0             	mov    -0x10(%ebp),%eax
+ 574:	0f b7 d0             	movzwl %ax,%edx
+ 577:	0f b7 45 e4          	movzwl -0x1c(%ebp),%eax
+ 57b:	83 c0 08             	add    $0x8,%eax
+ 57e:	0f b6 c0             	movzbl %al,%eax
+ 581:	83 ec 0c             	sub    $0xc,%esp
+ 584:	6a 0e                	push   $0xe
+ 586:	6a 00                	push   $0x0
+ 588:	68 00 00 00 00       	push   $0x0
+ 58d:	52                   	push   %edx
+ 58e:	50                   	push   %eax
+ 58f:	e8 fc ff ff ff       	call   590 <_ZN16InterruptManagerC1EtP21GlobalDescriptorTable+0x484>
+ 594:	83 c4 20             	add    $0x20,%esp
+ 597:	8b 45 f0             	mov    -0x10(%ebp),%eax
+ 59a:	0f b7 d0             	movzwl %ax,%edx
+ 59d:	0f b7 45 e4          	movzwl -0x1c(%ebp),%eax
+ 5a1:	83 c0 09             	add    $0x9,%eax
+ 5a4:	0f b6 c0             	movzbl %al,%eax
+ 5a7:	83 ec 0c             	sub    $0xc,%esp
+ 5aa:	6a 0e                	push   $0xe
+ 5ac:	6a 00                	push   $0x0
+ 5ae:	68 00 00 00 00       	push   $0x0
+ 5b3:	52                   	push   %edx
+ 5b4:	50                   	push   %eax
+ 5b5:	e8 fc ff ff ff       	call   5b6 <_ZN16InterruptManagerC1EtP21GlobalDescriptorTable+0x4aa>
+ 5ba:	83 c4 20             	add    $0x20,%esp
+ 5bd:	8b 45 f0             	mov    -0x10(%ebp),%eax
+ 5c0:	0f b7 d0             	movzwl %ax,%edx
+ 5c3:	0f b7 45 e4          	movzwl -0x1c(%ebp),%eax
+ 5c7:	83 c0 0a             	add    $0xa,%eax
+ 5ca:	0f b6 c0             	movzbl %al,%eax
+ 5cd:	83 ec 0c             	sub    $0xc,%esp
+ 5d0:	6a 0e                	push   $0xe
+ 5d2:	6a 00                	push   $0x0
+ 5d4:	68 00 00 00 00       	push   $0x0
+ 5d9:	52                   	push   %edx
+ 5da:	50                   	push   %eax
+ 5db:	e8 fc ff ff ff       	call   5dc <_ZN16InterruptManagerC1EtP21GlobalDescriptorTable+0x4d0>
+ 5e0:	83 c4 20             	add    $0x20,%esp
+ 5e3:	8b 45 f0             	mov    -0x10(%ebp),%eax
+ 5e6:	0f b7 d0             	movzwl %ax,%edx
+ 5e9:	0f b7 45 e4          	movzwl -0x1c(%ebp),%eax
+ 5ed:	83 c0 0b             	add    $0xb,%eax
+ 5f0:	0f b6 c0             	movzbl %al,%eax
+ 5f3:	83 ec 0c             	sub    $0xc,%esp
+ 5f6:	6a 0e                	push   $0xe
+ 5f8:	6a 00                	push   $0x0
+ 5fa:	68 00 00 00 00       	push   $0x0
+ 5ff:	52                   	push   %edx
+ 600:	50                   	push   %eax
+ 601:	e8 fc ff ff ff       	call   602 <_ZN16InterruptManagerC1EtP21GlobalDescriptorTable+0x4f6>
+ 606:	83 c4 20             	add    $0x20,%esp
+ 609:	8b 45 f0             	mov    -0x10(%ebp),%eax
+ 60c:	0f b7 d0             	movzwl %ax,%edx
+ 60f:	0f b7 45 e4          	movzwl -0x1c(%ebp),%eax
+ 613:	83 c0 0c             	add    $0xc,%eax
+ 616:	0f b6 c0             	movzbl %al,%eax
+ 619:	83 ec 0c             	sub    $0xc,%esp
+ 61c:	6a 0e                	push   $0xe
+ 61e:	6a 00                	push   $0x0
+ 620:	68 00 00 00 00       	push   $0x0
+ 625:	52                   	push   %edx
+ 626:	50                   	push   %eax
+ 627:	e8 fc ff ff ff       	call   628 <_ZN16InterruptManagerC1EtP21GlobalDescriptorTable+0x51c>
+ 62c:	83 c4 20             	add    $0x20,%esp
+ 62f:	8b 45 f0             	mov    -0x10(%ebp),%eax
+ 632:	0f b7 d0             	movzwl %ax,%edx
+ 635:	0f b7 45 e4          	movzwl -0x1c(%ebp),%eax
+ 639:	83 c0 0d             	add    $0xd,%eax
+ 63c:	0f b6 c0             	movzbl %al,%eax
+ 63f:	83 ec 0c             	sub    $0xc,%esp
+ 642:	6a 0e                	push   $0xe
+ 644:	6a 00                	push   $0x0
+ 646:	68 00 00 00 00       	push   $0x0
+ 64b:	52                   	push   %edx
+ 64c:	50                   	push   %eax
+ 64d:	e8 fc ff ff ff       	call   64e <_ZN16InterruptManagerC1EtP21GlobalDescriptorTable+0x542>
+ 652:	83 c4 20             	add    $0x20,%esp
+ 655:	8b 45 f0             	mov    -0x10(%ebp),%eax
+ 658:	0f b7 d0             	movzwl %ax,%edx
+ 65b:	0f b7 45 e4          	movzwl -0x1c(%ebp),%eax
+ 65f:	83 c0 0e             	add    $0xe,%eax
+ 662:	0f b6 c0             	movzbl %al,%eax
+ 665:	83 ec 0c             	sub    $0xc,%esp
+ 668:	6a 0e                	push   $0xe
+ 66a:	6a 00                	push   $0x0
+ 66c:	68 00 00 00 00       	push   $0x0
+ 671:	52                   	push   %edx
+ 672:	50                   	push   %eax
+ 673:	e8 fc ff ff ff       	call   674 <_ZN16InterruptManagerC1EtP21GlobalDescriptorTable+0x568>
+ 678:	83 c4 20             	add    $0x20,%esp
+ 67b:	8b 45 f0             	mov    -0x10(%ebp),%eax
+ 67e:	0f b7 d0             	movzwl %ax,%edx
+ 681:	0f b7 45 e4          	movzwl -0x1c(%ebp),%eax
+ 685:	83 c0 0f             	add    $0xf,%eax
+ 688:	0f b6 c0             	movzbl %al,%eax
+ 68b:	83 ec 0c             	sub    $0xc,%esp
+ 68e:	6a 0e                	push   $0xe
+ 690:	6a 00                	push   $0x0
+ 692:	68 00 00 00 00       	push   $0x0
+ 697:	52                   	push   %edx
+ 698:	50                   	push   %eax
+ 699:	e8 fc ff ff ff       	call   69a <_ZN16InterruptManagerC1EtP21GlobalDescriptorTable+0x58e>
+ 69e:	83 c4 20             	add    $0x20,%esp
+ 6a1:	8b 45 08             	mov    0x8(%ebp),%eax
+ 6a4:	05 04 04 00 00       	add    $0x404,%eax
+ 6a9:	83 ec 08             	sub    $0x8,%esp
+ 6ac:	6a 11                	push   $0x11
+ 6ae:	50                   	push   %eax
+ 6af:	e8 fc ff ff ff       	call   6b0 <_ZN16InterruptManagerC1EtP21GlobalDescriptorTable+0x5a4>
+ 6b4:	83 c4 10             	add    $0x10,%esp
+ 6b7:	8b 45 08             	mov    0x8(%ebp),%eax
+ 6ba:	05 14 04 00 00       	add    $0x414,%eax
+ 6bf:	83 ec 08             	sub    $0x8,%esp
+ 6c2:	6a 11                	push   $0x11
+ 6c4:	50                   	push   %eax
+ 6c5:	e8 fc ff ff ff       	call   6c6 <_ZN16InterruptManagerC1EtP21GlobalDescriptorTable+0x5ba>
+ 6ca:	83 c4 10             	add    $0x10,%esp
+ 6cd:	8b 45 08             	mov    0x8(%ebp),%eax
+ 6d0:	8d 90 0c 04 00 00    	lea    0x40c(%eax),%edx
+ 6d6:	0f b7 45 e4          	movzwl -0x1c(%ebp),%eax
+ 6da:	0f b6 c0             	movzbl %al,%eax
+ 6dd:	83 ec 08             	sub    $0x8,%esp
+ 6e0:	50                   	push   %eax
+ 6e1:	52                   	push   %edx
+ 6e2:	e8 fc ff ff ff       	call   6e3 <_ZN16InterruptManagerC1EtP21GlobalDescriptorTable+0x5d7>
+ 6e7:	83 c4 10             	add    $0x10,%esp
+ 6ea:	8b 45 08             	mov    0x8(%ebp),%eax
+ 6ed:	8d 90 1c 04 00 00    	lea    0x41c(%eax),%edx
+ 6f3:	0f b7 45 e4          	movzwl -0x1c(%ebp),%eax
+ 6f7:	83 c0 08             	add    $0x8,%eax
+ 6fa:	0f b6 c0             	movzbl %al,%eax
+ 6fd:	83 ec 08             	sub    $0x8,%esp
+ 700:	50                   	push   %eax
+ 701:	52                   	push   %edx
+ 702:	e8 fc ff ff ff       	call   703 <_ZN16InterruptManagerC1EtP21GlobalDescriptorTable+0x5f7>
+ 707:	83 c4 10             	add    $0x10,%esp
+ 70a:	8b 45 08             	mov    0x8(%ebp),%eax
+ 70d:	05 0c 04 00 00       	add    $0x40c,%eax
+ 712:	83 ec 08             	sub    $0x8,%esp
+ 715:	6a 04                	push   $0x4
+ 717:	50                   	push   %eax
+ 718:	e8 fc ff ff ff       	call   719 <_ZN16InterruptManagerC1EtP21GlobalDescriptorTable+0x60d>
+ 71d:	83 c4 10             	add    $0x10,%esp
+ 720:	8b 45 08             	mov    0x8(%ebp),%eax
+ 723:	05 1c 04 00 00       	add    $0x41c,%eax
+ 728:	83 ec 08             	sub    $0x8,%esp
+ 72b:	6a 02                	push   $0x2
+ 72d:	50                   	push   %eax
+ 72e:	e8 fc ff ff ff       	call   72f <_ZN16InterruptManagerC1EtP21GlobalDescriptorTable+0x623>
+ 733:	83 c4 10             	add    $0x10,%esp
+ 736:	8b 45 08             	mov    0x8(%ebp),%eax
+ 739:	05 0c 04 00 00       	add    $0x40c,%eax
+ 73e:	83 ec 08             	sub    $0x8,%esp
+ 741:	6a 01                	push   $0x1
+ 743:	50                   	push   %eax
+ 744:	e8 fc ff ff ff       	call   745 <_ZN16InterruptManagerC1EtP21GlobalDescriptorTable+0x639>
+ 749:	83 c4 10             	add    $0x10,%esp
+ 74c:	8b 45 08             	mov    0x8(%ebp),%eax
+ 74f:	05 1c 04 00 00       	add    $0x41c,%eax
+ 754:	83 ec 08             	sub    $0x8,%esp
+ 757:	6a 01                	push   $0x1
+ 759:	50                   	push   %eax
+ 75a:	e8 fc ff ff ff       	call   75b <_ZN16InterruptManagerC1EtP21GlobalDescriptorTable+0x64f>
+ 75f:	83 c4 10             	add    $0x10,%esp
+ 762:	8b 45 08             	mov    0x8(%ebp),%eax
+ 765:	05 0c 04 00 00       	add    $0x40c,%eax
+ 76a:	83 ec 08             	sub    $0x8,%esp
+ 76d:	6a 00                	push   $0x0
+ 76f:	50                   	push   %eax
+ 770:	e8 fc ff ff ff       	call   771 <_ZN16InterruptManagerC1EtP21GlobalDescriptorTable+0x665>
+ 775:	83 c4 10             	add    $0x10,%esp
+ 778:	8b 45 08             	mov    0x8(%ebp),%eax
+ 77b:	05 1c 04 00 00       	add    $0x41c,%eax
+ 780:	83 ec 08             	sub    $0x8,%esp
+ 783:	6a 00                	push   $0x0
+ 785:	50                   	push   %eax
+ 786:	e8 fc ff ff ff       	call   787 <_ZN16InterruptManagerC1EtP21GlobalDescriptorTable+0x67b>
+ 78b:	83 c4 10             	add    $0x10,%esp
+ 78e:	66 c7 45 e9 ff 07    	movw   $0x7ff,-0x17(%ebp)
+ 794:	b8 00 00 00 00       	mov    $0x0,%eax
+ 799:	89 45 eb             	mov    %eax,-0x15(%ebp)
+ 79c:	0f 01 5d e9          	lidtl  -0x17(%ebp)
+ 7a0:	90                   	nop
+ 7a1:	c9                   	leave  
+ 7a2:	c3                   	ret    
+ 7a3:	90                   	nop
+
+000007a4 <_ZN16InterruptManagerD1Ev>:
+ 7a4:	55                   	push   %ebp
+ 7a5:	89 e5                	mov    %esp,%ebp
+ 7a7:	83 ec 08             	sub    $0x8,%esp
+ 7aa:	83 ec 0c             	sub    $0xc,%esp
+ 7ad:	ff 75 08             	push   0x8(%ebp)
+ 7b0:	e8 fc ff ff ff       	call   7b1 <_ZN16InterruptManagerD1Ev+0xd>
+ 7b5:	83 c4 10             	add    $0x10,%esp
+ 7b8:	8b 45 08             	mov    0x8(%ebp),%eax
+ 7bb:	05 1c 04 00 00       	add    $0x41c,%eax
+ 7c0:	83 ec 0c             	sub    $0xc,%esp
+ 7c3:	50                   	push   %eax
+ 7c4:	e8 fc ff ff ff       	call   7c5 <_ZN16InterruptManagerD1Ev+0x21>
+ 7c9:	83 c4 10             	add    $0x10,%esp
+ 7cc:	8b 45 08             	mov    0x8(%ebp),%eax
+ 7cf:	05 14 04 00 00       	add    $0x414,%eax
+ 7d4:	83 ec 0c             	sub    $0xc,%esp
+ 7d7:	50                   	push   %eax
+ 7d8:	e8 fc ff ff ff       	call   7d9 <_ZN16InterruptManagerD1Ev+0x35>
+ 7dd:	83 c4 10             	add    $0x10,%esp
+ 7e0:	8b 45 08             	mov    0x8(%ebp),%eax
+ 7e3:	05 0c 04 00 00       	add    $0x40c,%eax
+ 7e8:	83 ec 0c             	sub    $0xc,%esp
+ 7eb:	50                   	push   %eax
+ 7ec:	e8 fc ff ff ff       	call   7ed <_ZN16InterruptManagerD1Ev+0x49>
+ 7f1:	83 c4 10             	add    $0x10,%esp
+ 7f4:	8b 45 08             	mov    0x8(%ebp),%eax
+ 7f7:	05 04 04 00 00       	add    $0x404,%eax
+ 7fc:	83 ec 0c             	sub    $0xc,%esp
+ 7ff:	50                   	push   %eax
+ 800:	e8 fc ff ff ff       	call   801 <_ZN16InterruptManagerD1Ev+0x5d>
+ 805:	83 c4 10             	add    $0x10,%esp
+ 808:	90                   	nop
+ 809:	c9                   	leave  
+ 80a:	c3                   	ret    
+ 80b:	90                   	nop
+
+0000080c <_ZN16InterruptManager23HardwareInterruptOffsetEv>:
+ 80c:	55                   	push   %ebp
+ 80d:	89 e5                	mov    %esp,%ebp
+ 80f:	8b 45 08             	mov    0x8(%ebp),%eax
+ 812:	0f b7 80 00 04 00 00 	movzwl 0x400(%eax),%eax
+ 819:	5d                   	pop    %ebp
+ 81a:	c3                   	ret    
+ 81b:	90                   	nop
+
+0000081c <_ZN16InterruptManager8ActivateEv>:
+ 81c:	55                   	push   %ebp
+ 81d:	89 e5                	mov    %esp,%ebp
+ 81f:	83 ec 08             	sub    $0x8,%esp
+ 822:	a1 00 00 00 00       	mov    0x0,%eax
+ 827:	85 c0                	test   %eax,%eax
+ 829:	74 11                	je     83c <_ZN16InterruptManager8ActivateEv+0x20>
+ 82b:	a1 00 00 00 00       	mov    0x0,%eax
+ 830:	83 ec 0c             	sub    $0xc,%esp
+ 833:	50                   	push   %eax
+ 834:	e8 fc ff ff ff       	call   835 <_ZN16InterruptManager8ActivateEv+0x19>
+ 839:	83 c4 10             	add    $0x10,%esp
+ 83c:	8b 45 08             	mov    0x8(%ebp),%eax
+ 83f:	a3 00 00 00 00       	mov    %eax,0x0
+ 844:	fb                   	sti    
+ 845:	90                   	nop
+ 846:	c9                   	leave  
+ 847:	c3                   	ret    
+
+00000848 <_ZN16InterruptManager10DeactivateEv>:
+ 848:	55                   	push   %ebp
+ 849:	89 e5                	mov    %esp,%ebp
+ 84b:	a1 00 00 00 00       	mov    0x0,%eax
+ 850:	39 45 08             	cmp    %eax,0x8(%ebp)
+ 853:	75 0b                	jne    860 <_ZN16InterruptManager10DeactivateEv+0x18>
+ 855:	c7 05 00 00 00 00 00 	movl   $0x0,0x0
+ 85c:	00 00 00 
+ 85f:	fa                   	cli    
+ 860:	90                   	nop
+ 861:	5d                   	pop    %ebp
+ 862:	c3                   	ret    
+ 863:	90                   	nop
+
+00000864 <_ZN16InterruptManager15HandleInterruptEhj>:
+ 864:	55                   	push   %ebp
+ 865:	89 e5                	mov    %esp,%ebp
+ 867:	83 ec 18             	sub    $0x18,%esp
+ 86a:	8b 45 08             	mov    0x8(%ebp),%eax
+ 86d:	88 45 f4             	mov    %al,-0xc(%ebp)
+ 870:	a1 00 00 00 00       	mov    0x0,%eax
+ 875:	85 c0                	test   %eax,%eax
+ 877:	74 1b                	je     894 <_ZN16InterruptManager15HandleInterruptEhj+0x30>
+ 879:	a1 00 00 00 00       	mov    0x0,%eax
+ 87e:	0f b6 55 f4          	movzbl -0xc(%ebp),%edx
+ 882:	83 ec 04             	sub    $0x4,%esp
+ 885:	ff 75 0c             	push   0xc(%ebp)
+ 888:	52                   	push   %edx
+ 889:	50                   	push   %eax
+ 88a:	e8 fc ff ff ff       	call   88b <_ZN16InterruptManager15HandleInterruptEhj+0x27>
+ 88f:	83 c4 10             	add    $0x10,%esp
+ 892:	eb 03                	jmp    897 <_ZN16InterruptManager15HandleInterruptEhj+0x33>
+ 894:	8b 45 0c             	mov    0xc(%ebp),%eax
+ 897:	c9                   	leave  
+ 898:	c3                   	ret    
+ 899:	90                   	nop
+
+0000089a <_ZN16InterruptManager17DoHandleInterruptEhj>:
+ 89a:	55                   	push   %ebp
+ 89b:	89 e5                	mov    %esp,%ebp
+ 89d:	83 ec 18             	sub    $0x18,%esp
+ 8a0:	8b 45 0c             	mov    0xc(%ebp),%eax
+ 8a3:	88 45 f4             	mov    %al,-0xc(%ebp)
+ 8a6:	0f b6 55 f4          	movzbl -0xc(%ebp),%edx
+ 8aa:	8b 45 08             	mov    0x8(%ebp),%eax
+ 8ad:	8b 04 90             	mov    (%eax,%edx,4),%eax
+ 8b0:	85 c0                	test   %eax,%eax
+ 8b2:	74 29                	je     8dd <_ZN16InterruptManager17DoHandleInterruptEhj+0x43>
+ 8b4:	0f b6 55 f4          	movzbl -0xc(%ebp),%edx
+ 8b8:	8b 45 08             	mov    0x8(%ebp),%eax
+ 8bb:	8b 04 90             	mov    (%eax,%edx,4),%eax
+ 8be:	8b 00                	mov    (%eax),%eax
+ 8c0:	8b 00                	mov    (%eax),%eax
+ 8c2:	0f b6 4d f4          	movzbl -0xc(%ebp),%ecx
+ 8c6:	8b 55 08             	mov    0x8(%ebp),%edx
+ 8c9:	8b 14 8a             	mov    (%edx,%ecx,4),%edx
+ 8cc:	83 ec 08             	sub    $0x8,%esp
+ 8cf:	ff 75 10             	push   0x10(%ebp)
+ 8d2:	52                   	push   %edx
+ 8d3:	ff d0                	call   *%eax
+ 8d5:	83 c4 10             	add    $0x10,%esp
+ 8d8:	89 45 10             	mov    %eax,0x10(%ebp)
+ 8db:	eb 36                	jmp    913 <_ZN16InterruptManager17DoHandleInterruptEhj+0x79>
+ 8dd:	80 7d f4 20          	cmpb   $0x20,-0xc(%ebp)
+ 8e1:	74 30                	je     913 <_ZN16InterruptManager17DoHandleInterruptEhj+0x79>
+ 8e3:	83 ec 0c             	sub    $0xc,%esp
+ 8e6:	68 00 00 00 00       	push   $0x0
+ 8eb:	e8 fc ff ff ff       	call   8ec <_ZN16InterruptManager17DoHandleInterruptEhj+0x52>
+ 8f0:	83 c4 10             	add    $0x10,%esp
+ 8f3:	0f b6 45 f4          	movzbl -0xc(%ebp),%eax
+ 8f7:	83 ec 0c             	sub    $0xc,%esp
+ 8fa:	50                   	push   %eax
+ 8fb:	e8 fc ff ff ff       	call   8fc <_ZN16InterruptManager17DoHandleInterruptEhj+0x62>
+ 900:	83 c4 10             	add    $0x10,%esp
+ 903:	83 ec 0c             	sub    $0xc,%esp
+ 906:	68 16 00 00 00       	push   $0x16
+ 90b:	e8 fc ff ff ff       	call   90c <_ZN16InterruptManager17DoHandleInterruptEhj+0x72>
+ 910:	83 c4 10             	add    $0x10,%esp
+ 913:	80 7d f4 1f          	cmpb   $0x1f,-0xc(%ebp)
+ 917:	76 38                	jbe    951 <_ZN16InterruptManager17DoHandleInterruptEhj+0xb7>
+ 919:	80 7d f4 2f          	cmpb   $0x2f,-0xc(%ebp)
+ 91d:	77 32                	ja     951 <_ZN16InterruptManager17DoHandleInterruptEhj+0xb7>
+ 91f:	8b 45 08             	mov    0x8(%ebp),%eax
+ 922:	05 04 04 00 00       	add    $0x404,%eax
+ 927:	83 ec 08             	sub    $0x8,%esp
+ 92a:	6a 20                	push   $0x20
+ 92c:	50                   	push   %eax
+ 92d:	e8 fc ff ff ff       	call   92e <_ZN16InterruptManager17DoHandleInterruptEhj+0x94>
+ 932:	83 c4 10             	add    $0x10,%esp
+ 935:	80 7d f4 27          	cmpb   $0x27,-0xc(%ebp)
+ 939:	76 16                	jbe    951 <_ZN16InterruptManager17DoHandleInterruptEhj+0xb7>
+ 93b:	8b 45 08             	mov    0x8(%ebp),%eax
+ 93e:	05 14 04 00 00       	add    $0x414,%eax
+ 943:	83 ec 08             	sub    $0x8,%esp
+ 946:	6a 20                	push   $0x20
+ 948:	50                   	push   %eax
+ 949:	e8 fc ff ff ff       	call   94a <_ZN16InterruptManager17DoHandleInterruptEhj+0xb0>
+ 94e:	83 c4 10             	add    $0x10,%esp
+ 951:	8b 45 10             	mov    0x10(%ebp),%eax
+ 954:	c9                   	leave  
+ 955:	c3                   	ret    

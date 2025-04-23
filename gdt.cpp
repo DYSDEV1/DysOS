@@ -1,4 +1,4 @@
-#include "gdt.h"
+    #include "gdt.h"
 #include "size.h"
 
 GlobalDescriptorTable::GlobalDescriptorTable()
@@ -19,7 +19,7 @@ GlobalDescriptorTable::GlobalDescriptorTable()
 GlobalDescriptorTable::~GlobalDescriptorTable(){}
 
 uint16_t GlobalDescriptorTable::DataSegmentSelector(){
-    return (uint16_t)((uint8_t*)&dataSegmentSelector - (uint8_t*) this); 
+    return (uint8_t*)&dataSegmentSelector - (uint8_t*) this; 
 }
 
 uint16_t GlobalDescriptorTable::CodeSegmentSelector(){

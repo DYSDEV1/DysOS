@@ -50,14 +50,14 @@ InterruptManager::InterruptManager(uint16_t hardwareInterruptOffset, GlobalDescr
     uint32_t CodeSegment = globalDescriptorTable->CodeSegmentSelector();
 
     const uint8_t IDT_INTERRUPT_GATE = 0xE;
-    for (uint16_t i = 0; i < 256; ++i)
+    for(uint8_t i = 255; i > 0; --i)
     {
         SetInterruptDescriptorTableEntry(i, CodeSegment, &InterruptIgnore, 0, IDT_INTERRUPT_GATE);
         handlers[i] = 0;
     }
 
-
     SetInterruptDescriptorTableEntry(0, CodeSegment, &InterruptIgnore, 0, IDT_INTERRUPT_GATE);
+    handlers[0] = 0;
 
     SetInterruptDescriptorTableEntry(0x00, CodeSegment, &HandleException0x00, 0, IDT_INTERRUPT_GATE);
     SetInterruptDescriptorTableEntry(0x01, CodeSegment, &HandleException0x01, 0, IDT_INTERRUPT_GATE);
@@ -114,7 +114,7 @@ InterruptManager::InterruptManager(uint16_t hardwareInterruptOffset, GlobalDescr
     picSlaveData.Write(0x00);
 
     InterruptDescriptorTablePointer idt_pointer;
-    idt_pointer.size  = 256*sizeof(GateDescriptor) - 1;
+    idt_pointer.size  = sizeof(interruptDescriptorTable) - 1;
     idt_pointer.base  = (uint32_t)interruptDescriptorTable;
     asm volatile("lidt %0" : : "m" (idt_pointer));
 }

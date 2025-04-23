@@ -24,7 +24,9 @@ KeyboardDriver::~KeyboardDriver(){
 
 uint32_t KeyboardDriver::HandleInterrupt(uint32_t esp){
     uint8_t key = dataPort.Read();
-    printf("KEYBOARD: ");
-    printfHex(key);
+    if(key < 0x80){
+        printf("KEYBOARD: ");
+        printfHex(key);
+    }
     return esp;
 }

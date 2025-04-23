@@ -5,7 +5,7 @@ CPPPARAMS = -m32 \
             -fpermissive -Wall -Wextra -Werror \
             -Wno-error=unused-variable -Wno-error=unused-parameter -Wno-write-strings \
             -mno-red-zone -mno-sse -mno-sse2 -mno-mmx -mno-80387\
-			-fno-pie -no-pie -fno-pic\
+			-fno-pie -no-pie -fno-pic -g -O0\
     
 
 ASPARAMS = --32

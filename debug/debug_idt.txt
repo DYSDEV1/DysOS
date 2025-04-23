@@ -1,0 +1,4 @@
+{{handlerAddressLowBits = 1945, gdt_codeSegmentSelector = 16, reserved = 0 '\000', 
+    access = 142 '\216', handlerAddressHighBits = 16}, {handlerAddressLowBits = 1957, 
+    gdt_codeSegmentSelector = 16, reserved = 0 '\000', access = 142 '\216', 
+    handlerAddressHighBits = 16}

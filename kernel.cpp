@@ -9,7 +9,7 @@
 
 
 void printf(const char* str) {
-    volatile uint16_t* VideoMemory = (volatile uint16_t*)0xb8000;
+    static uint16_t* VideoMemory = (uint16_t*)0xb8000;
     static uint8_t x = 0; 
     static uint8_t y = 0; 
 
