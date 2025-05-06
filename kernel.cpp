@@ -1,7 +1,9 @@
 #include "types.h"
 #include "gdt.h"
 #include "interrupts.h"
+#include "driver.h"
 #include "keyboard.h"
+#include "mouse.h"
 
 #define HEIGHT 25 
 #define WIDTH 80
@@ -19,6 +21,21 @@ void printf(const char* str) {
         switch (str[i])
         {
         case '\n':
+            y++;
+            x = 0;
+            break;
+        case ' ': 
+            x++;
+            break; 
+
+        case '\b':
+            if(x > 0){
+                x--;
+                VideoMemory[WIDTH*y+x] = (VideoMemory[WIDTH*y+x] & 0xFF00) | ' ';
+            }
+            
+            break;
+        case '\r':
             y++;
             x = 0;
             break;
@@ -55,6 +72,8 @@ void printfHex(uint8_t key)
 }
 
 
+
+
 typedef void (*constructor)();
 extern "C" constructor start_ctors;
 extern "C" constructor end_ctors;
@@ -68,13 +87,31 @@ extern "C" void kernelMain(const void* multiboot_structure, uint32_t /*magicnumb
     
     printf("\n");
     printf("===============================================\n");
-    printf("   Welcome to DysOS - The Ultimate 32-bit OS!  \n");
+    printf("   Welcome to DysOS - 32-bit OS!  \n");
     printf("      An operating system by Dys \n");
     printf("===============================================\n");
     printf("\n");
     GlobalDescriptorTable gdt;
     InterruptManager interrupts(0x20, &gdt);
-    KeyboardDriver keyboard(&interrupts);
+
+    printf("[i] Initializing Drivers.\n");
+    DriverManager DrvManager;
+
+    KeyboardEventHandler kbHandler;
+    KeyboardDriver keyboard(&interrupts, &kbHandler);
+    DrvManager.AddDriver(&keyboard);
+    /*
+    MouseEventHandler MsHandler;
+    MouseDriver mouse(&interrupts, &MsHandler);
+    DrvManager.AddDriver(&mouse);
+    */
+    
+    printf("[i] Activating Drivers. \n");
+
+    DrvManager.ActivateAll();
+
+    printf("[i] Activating Interrupts.\n");
+
     interrupts.Activate();
 
 

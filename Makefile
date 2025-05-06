@@ -12,7 +12,10 @@ ASPARAMS = --32
 LDPARAMS = -melf_i386
 
 build_dir = build
-objects = $(build_dir)/loader.o $(build_dir)/kernel.o $(build_dir)/gdt.o $(build_dir)/port.o $(build_dir)/interruptstubs.o $(build_dir)/interrupts.o $(build_dir)/keyboard.o
+objects = $(build_dir)/loader.o $(build_dir)/kernel.o $(build_dir)/driver.o $(build_dir)/gdt.o \
+$(build_dir)/port.o $(build_dir)/interruptstubs.o $(build_dir)/interrupts.o \
+$(build_dir)/keyboard.o $(build_dir)/mouse.o \
+
 
 $(build_dir):
 	mkdir -p $(build_dir)
