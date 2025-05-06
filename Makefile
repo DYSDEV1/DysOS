@@ -1,4 +1,4 @@
-CPPPARAMS = -m32 \
+CPPPARAMS = -m32 -Iinclude\
             -nostdlib -nostdinc -static -ffreestanding \
             -fno-builtin -fno-rtti -fno-exceptions -fno-use-cxa-atexit \
             -fno-leading-underscore -fno-omit-frame-pointer \
@@ -12,22 +12,45 @@ ASPARAMS = --32
 LDPARAMS = -melf_i386
 
 build_dir = build
-objects = $(build_dir)/loader.o $(build_dir)/kernel.o $(build_dir)/driver.o $(build_dir)/gdt.o \
-$(build_dir)/port.o $(build_dir)/interruptstubs.o $(build_dir)/interrupts.o \
-$(build_dir)/keyboard.o $(build_dir)/mouse.o \
+objects = $(build_dir)/loader.o \
+          $(build_dir)/kernel.o \
+          $(build_dir)/drivers/driver.o \
+          $(build_dir)/drivers/keyboard.o \
+          $(build_dir)/drivers/mouse.o \
+          $(build_dir)/gdt.o \
+          $(build_dir)/hardwareCommunication/port.o \
+          $(build_dir)/hardwareCommunication/interrupts.o \
+          $(build_dir)/hardwareCommunication/interruptstubs.o
 
 
 $(build_dir):
 	mkdir -p $(build_dir)
 
-$(build_dir)/%.o: %.cpp | $(build_dir)
+$(build_dir)/%.o: src/%.cpp | $(build_dir)
 	g++ $(CPPPARAMS) -o $@ -c $<
 
-$(build_dir)/%.o: %.s | $(build_dir)
+$(build_dir)/%.o: src/%.s | $(build_dir)
+	as $(ASPARAMS) -o $@ $<
+
+$(build_dir)/common/%.o: src/common/%.cpp | $(build_dir)
+	mkdir -p $(dir $@)
+	g++ $(CPPPARAMS) -o $@ -c $<
+
+$(build_dir)/drivers/%.o: src/drivers/%.cpp | $(build_dir)
+	mkdir -p $(dir $@)
+	g++ $(CPPPARAMS) -o $@ -c $<
+
+$(build_dir)/hardwareCommunication/%.o: src/hardwareCommunication/%.cpp | $(build_dir)
+	mkdir -p $(dir $@)
+	g++ $(CPPPARAMS) -o $@ -c $<
+
+$(build_dir)/hardwareCommunication/%.o: src/hardwareCommunication/%.s | $(build_dir)
+	mkdir -p $(dir $@)
 	as $(ASPARAMS) -o $@ $<
 
 $(build_dir)/kernel.bin: linker.ld $(objects)
 	ld $(LDPARAMS) -T $< -o $@ $(objects)
+
 
 install: $(build_dir)/kernel.bin
 	sudo cp $< /boot/kernel.bin
