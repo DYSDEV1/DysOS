@@ -148,8 +148,6 @@ const char* KeyboardDriver::scancode_to_key(uint8_t scancode){
 
 
 
-
-
 uint32_t KeyboardDriver::HandleInterrupt(uint32_t esp){
     uint8_t key = dataPort.Read();
 

@@ -78,7 +78,7 @@ int_bottom:
     # C++ Handler aufrufen
     pushl %esp
     push (interruptnumber)
-    call _ZN5dysos21hardwarecommunication16InterruptManager15HandleInterruptEhj
+    call _ZN5dysos21hardwarecommunication16InterruptManager15ManageInterruptEhj
     add %esp, 6
     mov %eax, %esp # den stack wechseln
 

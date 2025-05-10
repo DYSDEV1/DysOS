@@ -108,7 +108,7 @@ namespace dysos{
                 InterruptManager(uint16_t hardwareInterruptOffset, GlobalDescriptorTable* globalDescriptorTable);
                 ~InterruptManager();
     
-                static uint32_t HandleInterrupt(uint8_t interrupt, uint32_t esp);
+                static uint32_t ManageInterrupt(uint8_t interrupt, uint32_t esp);
                 uint32_t DoHandleInterrupt(uint8_t interruptNumber, uint32_t esp);
                 uint16_t HardwareInterruptOffset();
                 void Activate();

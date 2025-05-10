@@ -20,6 +20,7 @@ objects = $(build_dir)/loader.o \
           $(build_dir)/gdt.o \
           $(build_dir)/hardwareCommunication/port.o \
           $(build_dir)/hardwareCommunication/interrupts.o \
+		  $(build_dir)/hardwareCommunication/pci.o \
           $(build_dir)/hardwareCommunication/interruptstubs.o
 
 

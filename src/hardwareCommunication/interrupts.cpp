@@ -151,7 +151,7 @@ void InterruptManager::Deactivate()
     
 }
 
-uint32_t InterruptManager::HandleInterrupt(uint8_t interrupt, uint32_t esp)
+uint32_t InterruptManager::ManageInterrupt(uint8_t interrupt, uint32_t esp)
 {
     if(ActiveInterruptManager != 0){
         return ActiveInterruptManager->DoHandleInterrupt(interrupt, esp);
