@@ -112,7 +112,7 @@ extern "C" void kernelMain(const void* multiboot_structure, uint32_t /*magicnumb
     DrvManager.AddDriver(&mouse);
     */
     PCI PCIController;
-    PCIController.SelectDrivers(&DrvManager);
+    PCIController.SelectDrivers(&DrvManager, &interrupts);
 
 
     printf("[i] Activating Drivers. \n");

@@ -29,7 +29,7 @@ uint32_t PCI::Read(uint16_t bus, uint16_t device, uint16_t function, uint32_t re
     | ((device & 0x1F) << 11)//5 bit 
     | ((function & 0x07) << 8)//3 bit 
     | ((registeroffset & 0xFC)); //6 bit 
-    //need to be aligned to 4 byte as it is a 32 bit address
+    //need to be aligned to 4 bit as it is a 32 bit address
     commandPort.Write(id);
     uint32_t result = dataPort.Read();
 
@@ -56,22 +56,91 @@ bool PCI::DeviceHasFunctions(uint16_t bus, uint16_t device){
     
 }
 
-void PCI::SelectDrivers(DriverManager* driverManager){
+BaseAddressRegister PCI::GetBaseAddressRegister(uint16_t bus, uint16_t device, uint16_t function, uint16_t bar){
+    BaseAddressRegister result;
+
+    uint32_t headertype = Read(bus, device, function, 0x0E) & 0x7F;
+    int maxBars = 6 - (4*headertype);
+    if(bar >= maxBars)
+        return result;
+
+    uint32_t bar_value = Read(bus, device, function, 0x10 + 4*bar);
+    result.type = (bar_value & 0x1) ? InputOutput : MemoryMapping;
+
+    uint32_t temp;
+
+    if(result.type == MemoryMapping){
+        switch ((bar_value >> 1) & 0x3)
+        {
+        case 0://32bit mode
+        case 1://20bit mode 
+        case 2://64bit mode
+            break;
+        
+        default:
+            break;
+        }
+    }else{ //InputOutput
+        result.address = (uint8_t*)(bar_value & ~0x3);
+        result.prefetchable = false;
+    }
+    return result;
+}
+
+Driver* PCI::GetDriver(PCIDeviceDescriptor dev, InterruptManager *interrupts){
+    switch(dev.vendor_id){
+        case 0x1022: //AMD
+            switch(dev.device_id){
+                case 0x2000: //am79c973
+                    break;
+            }
+            break;
+        case 0x8086: //Intel
+            break;
+
+    }
+    switch(dev.class_id){
+        case 0x03: //graphics
+            switch(dev.subclass_id){
+                case 0x00: //VGA
+                    break;
+            }
+            break;
+    }
+
+    return 0;
+}
+
+void PCI::SelectDrivers(DriverManager* driverManager, InterruptManager* interrupts){
     for(int bus = 0; bus < 8; bus++){
         for(int device = 0; device < 32; device++){
             int numFunc = DeviceHasFunctions(bus, device) ? 8 : 1;
             for(int func = 0; func < numFunc; func++){
                 PCIDeviceDescriptor dev = GetDeviceDescriptor(bus, device, func);
                 if(dev.vendor_id == 0x0000 || dev.vendor_id == 0xFFFF) //no more function for this device 
-                    break;
+                    continue;
+
+                for(int barNum = 0; barNum < 0;barNum++){
+                    BaseAddressRegister bar = GetBaseAddressRegister(bus, device, func, barNum);
+                    if(bar.address && (bar.type == InputOutput))
+                        dev.portBase = (uint32_t)bar.address;
+
+                    Driver* driver = GetDriver(dev, interrupts);
+                    if(driver != 0)
+                        driverManager->AddDriver(driver);
+                }
+
                 printf("PCI BUS: ");
                 printfHex(bus & 0xFF);
 
                 printf(", DEVICE: ");
                 printfHex(device & 0xFF);
+                
+                printf(", FUNCTION: ");
+                printfHex(func & 0xFF);
+
 
                 printf(" = VENDOR: ");
-                printfHex(func & 0xFF);
                 printfHex((dev.vendor_id & 0xFF00) >> 8);
                 printfHex(dev.vendor_id & 0xFF);
 
