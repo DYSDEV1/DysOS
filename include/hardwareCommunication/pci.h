@@ -50,14 +50,14 @@ namespace dysos{
 
         };
 
-        class PCI{
+        class PCIController{
 
             Port32Bit dataPort; 
             Port32Bit commandPort;
 
             public: 
-                PCI();
-                ~PCI();
+                PCIController();
+                ~PCIController();
 
                 uint32_t Read(uint16_t bus, uint16_t device, uint16_t function, uint32_t registeroffset);
                 void Write(uint16_t bus, uint16_t device, uint16_t function, uint32_t registeroffset, uint32_t value);

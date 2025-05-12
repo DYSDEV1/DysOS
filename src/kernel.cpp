@@ -111,7 +111,7 @@ extern "C" void kernelMain(const void* multiboot_structure, uint32_t /*magicnumb
     MouseDriver mouse(&interrupts, &MsHandler);
     DrvManager.AddDriver(&mouse);
     */
-    PCI PCIController;
+    PCIController PCIController;
     PCIController.SelectDrivers(&DrvManager, &interrupts);
 
 

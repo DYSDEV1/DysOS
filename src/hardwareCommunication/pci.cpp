@@ -6,12 +6,12 @@ using namespace dysos::hardwarecommunication;
 void printf(const char* str);
 void printfHex(uint8_t key);
 
-PCI::PCI()
+PCIController::PCIController()
 : dataPort(0xCFC), commandPort(0xCF8){
 
 }
 
-PCI::~PCI(){
+PCIController::~PCIController(){
 
 }
 
@@ -22,7 +22,7 @@ PCIDeviceDescriptor::PCIDeviceDescriptor(){
 PCIDeviceDescriptor::~PCIDeviceDescriptor(){}
 
 
-uint32_t PCI::Read(uint16_t bus, uint16_t device, uint16_t function, uint32_t registeroffset){
+uint32_t PCIController::Read(uint16_t bus, uint16_t device, uint16_t function, uint32_t registeroffset){
     uint32_t id = //6 bit reserved
     0x1 << 31 
     | ((bus & 0xFF) << 16) //8 bit 
@@ -38,7 +38,7 @@ uint32_t PCI::Read(uint16_t bus, uint16_t device, uint16_t function, uint32_t re
 }
 
 
-void PCI::Write(uint16_t bus, uint16_t device, uint16_t function, uint32_t registeroffset, uint32_t value){
+void PCIController::Write(uint16_t bus, uint16_t device, uint16_t function, uint32_t registeroffset, uint32_t value){
     uint32_t id = 
     0x1 << 31
     | ((bus & 0xFF) << 16)
@@ -51,12 +51,12 @@ void PCI::Write(uint16_t bus, uint16_t device, uint16_t function, uint32_t regis
 
 }
  
-bool PCI::DeviceHasFunctions(uint16_t bus, uint16_t device){
+bool PCIController::DeviceHasFunctions(uint16_t bus, uint16_t device){
     return Read(bus, device, 0, 0x0E) & (1<<7);
     
 }
 
-BaseAddressRegister PCI::GetBaseAddressRegister(uint16_t bus, uint16_t device, uint16_t function, uint16_t bar){
+BaseAddressRegister PCIController::GetBaseAddressRegister(uint16_t bus, uint16_t device, uint16_t function, uint16_t bar){
     BaseAddressRegister result;
 
     uint32_t headertype = Read(bus, device, function, 0x0E) & 0x7F;
@@ -87,7 +87,7 @@ BaseAddressRegister PCI::GetBaseAddressRegister(uint16_t bus, uint16_t device, u
     return result;
 }
 
-Driver* PCI::GetDriver(PCIDeviceDescriptor dev, InterruptManager *interrupts){
+Driver* PCIController::GetDriver(PCIDeviceDescriptor dev, InterruptManager *interrupts){
     switch(dev.vendor_id){
         case 0x1022: //AMD
             switch(dev.device_id){
@@ -111,7 +111,7 @@ Driver* PCI::GetDriver(PCIDeviceDescriptor dev, InterruptManager *interrupts){
     return 0;
 }
 
-void PCI::SelectDrivers(DriverManager* driverManager, InterruptManager* interrupts){
+void PCIController::SelectDrivers(DriverManager* driverManager, InterruptManager* interrupts){
     for(int bus = 0; bus < 8; bus++){
         for(int device = 0; device < 32; device++){
             int numFunc = DeviceHasFunctions(bus, device) ? 8 : 1;
@@ -153,7 +153,7 @@ void PCI::SelectDrivers(DriverManager* driverManager, InterruptManager* interrup
     }
 }
 
-PCIDeviceDescriptor PCI::GetDeviceDescriptor(uint16_t bus, uint16_t device, uint16_t function){
+PCIDeviceDescriptor PCIController::GetDeviceDescriptor(uint16_t bus, uint16_t device, uint16_t function){
     PCIDeviceDescriptor result; 
 
     result.bus = bus;
