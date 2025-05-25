@@ -4,3 +4,8 @@ Features already present:
 - GDT
 - IDT
 - Keyboard and Mouse driver
+
+dependancies:  
+- virtualbox
+- xorisso
+- g++
